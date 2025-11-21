@@ -2,7 +2,7 @@
 
 :root {
   /* Lego Color Palette */
-  --background: #ffffff;
+  --background: #ffe6e6;
   --foreground: #111111;
 
   --card: #ffffff;
@@ -19,7 +19,11 @@
   /* Lego Yellow */
   --secondary-foreground: #111111;
 
-  --muted: #f4f4f5;
+  --tertiary: #FF8800;
+  /* Lego Orange */
+  --tertiary-foreground: #ffffff;
+
+  --muted: #fdf2f2;
   --muted-foreground: #111111;
 
   --accent: #237841;
@@ -43,12 +47,15 @@
   --font-mono: var(--font-geist-mono);
 }
 
+html,
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 /* Custom Scrollbar - Playful & Thick */

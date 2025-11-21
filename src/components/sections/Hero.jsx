@@ -7,10 +7,10 @@ import Link from "next/link";
 
 export function Hero() {
     return (
-        <section id="home" className="min-h-[calc(100vh-5rem)] flex items-center justify-center relative overflow-hidden">
+        <section id="home" className="min-h-[calc(100vh-5rem)] flex items-center justify-center relative overflow-hidden bg-background">
             {/* Background Gradients */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-primary/5 rounded-full blur-3xl -z-10" />
-            <div className="absolute bottom-0 right-0 w-[800px] h-[600px] bg-secondary/10 rounded-full blur-3xl -z-10" />
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[200%] md:w-[1000px] h-[500px] bg-primary/5 rounded-full blur-3xl -z-10" />
+            <div className="absolute bottom-0 right-0 w-[150%] md:w-[800px] h-[600px] bg-secondary/10 rounded-full blur-3xl -z-10" />
 
             <div className="container mx-auto px-6 py-20 flex flex-col items-center text-center gap-8">
                 <motion.div
@@ -21,7 +21,7 @@ export function Hero() {
                     <span className="inline-block py-1 px-3 rounded-full bg-secondary text-secondary-foreground text-sm font-medium mb-6">
                         Available for new projects
                     </span>
-                    <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/50">
+                    <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight mb-6 bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/50 px-4">
                         Generative AI Engineer <br className="hidden md:block" />
                         building intelligent systems.
                     </h1>
