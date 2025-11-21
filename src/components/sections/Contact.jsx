@@ -8,13 +8,13 @@ import { Mail, MapPin, Phone } from "lucide-react";
 
 export function Contact() {
     return (
-        <section id="contact" className="container mx-auto px-6 py-12 md:py-20 bg-purple-50/60">
+        <section id="contact" className="container mx-auto px-6 py-6 md:py-10 bg-purple-50/60">
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className="flex flex-col items-center text-center mb-8 md:mb-12"
+                className="flex flex-col items-center text-center mb-6 md:mb-10"
             >
                 <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">Get in Touch</h2>
                 <p className="text-muted-foreground max-w-2xl">
@@ -22,7 +22,7 @@ export function Contact() {
                 </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10">
                 <motion.div
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}

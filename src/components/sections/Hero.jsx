@@ -12,7 +12,7 @@ export function Hero() {
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[200%] md:w-[1000px] h-[500px] bg-primary/5 rounded-full blur-3xl -z-10" />
             <div className="absolute bottom-0 right-0 w-[150%] md:w-[800px] h-[600px] bg-secondary/10 rounded-full blur-3xl -z-10" />
 
-            <div className="container mx-auto px-6 py-20 flex flex-col items-center text-center gap-8">
+            <div className="container mx-auto px-6 py-8 md:py-12 flex flex-col items-center text-center gap-6 md:gap-8">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}

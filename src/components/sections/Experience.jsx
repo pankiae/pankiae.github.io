@@ -33,13 +33,13 @@ const experiences = [
 
 export function Experience() {
     return (
-        <section id="experience" className="container mx-auto px-6 py-12 md:py-20 bg-yellow-50/60">
+        <section id="experience" className="container mx-auto px-6 py-6 md:py-10 bg-yellow-50/60">
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className="flex flex-col gap-8 md:gap-12"
+                className="flex flex-col gap-6 md:gap-10"
             >
                 <div className="flex flex-col gap-4 items-center text-center">
                     <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Experience</h2>

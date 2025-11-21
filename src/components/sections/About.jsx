@@ -11,8 +11,8 @@ const skills = [
 
 export function About() {
     return (
-        <section id="about" className="container mx-auto px-6 py-12 md:py-20 bg-blue-50/60">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+        <section id="about" className="container mx-auto px-6 py-6 md:py-10 bg-blue-50/60">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 items-center">
                 <motion.div
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
