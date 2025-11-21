@@ -1,35 +1,41 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0a0a0a;
-  --foreground: #ededed;
-  
-  --card: #171717;
-  --card-foreground: #ededed;
-  
-  --popover: #171717;
-  --popover-foreground: #ededed;
-  
-  --primary: #ededed;
-  --primary-foreground: #171717;
-  
-  --secondary: #262626;
-  --secondary-foreground: #ededed;
-  
-  --muted: #262626;
-  --muted-foreground: #a3a3a3;
-  
-  --accent: #262626;
-  --accent-foreground: #ededed;
-  
-  --destructive: #ef4444;
-  --destructive-foreground: #ededed;
-  
-  --border: #262626;
-  --input: #262626;
-  --ring: #d4d4d4;
-  
-  --radius: 0.5rem;
+  /* Lego Color Palette */
+  --background: #ffffff;
+  --foreground: #111111;
+
+  --card: #ffffff;
+  --card-foreground: #111111;
+
+  --popover: #ffffff;
+  --popover-foreground: #111111;
+
+  --primary: #0055BF;
+  /* Lego Blue */
+  --primary-foreground: #ffffff;
+
+  --secondary: #F7D117;
+  /* Lego Yellow */
+  --secondary-foreground: #111111;
+
+  --muted: #f4f4f5;
+  --muted-foreground: #111111;
+
+  --accent: #237841;
+  /* Lego Green */
+  --accent-foreground: #ffffff;
+
+  --destructive: #E3000B;
+  /* Lego Red */
+  --destructive-foreground: #ffffff;
+
+  --border: #000000;
+  /* Thick black borders for cartoon feel */
+  --input: #000000;
+  --ring: #0055BF;
+
+  --radius: 0.75rem;
 }
 
 @theme {
@@ -45,27 +51,30 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Custom Scrollbar */
+/* Custom Scrollbar - Playful & Thick */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 16px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--background);
+  background: var(--secondary);
+  border-left: 2px solid var(--border);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--border);
-  border-radius: 5px;
+  background: var(--primary);
+  border: 2px solid var(--border);
+  border-radius: 99px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--muted-foreground);
+  background: var(--destructive);
 }
 
-/* Utility classes for glassmorphism */
+/* Utility classes for Lego/Cartoon Block style */
 .glass {
-  background: rgba(23, 23, 23, 0.7);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.95);
+  border: 3px solid #000000;
+  box-shadow: 6px 6px 0px #000000;
+  /* Hard shadow for 3D block effect */
 }
