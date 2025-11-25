@@ -41,18 +41,40 @@ const projects = [
 
 const SlidingImages = ({ projectSlug, imageCount }) => {
     const containerRef = useRef(null);
-    const [width, setWidth] = useState(0);
+    const [containerHeight, setContainerHeight] = useState(0);
+    const [imageDimensions, setImageDimensions] = useState([]);
 
     useEffect(() => {
         if (!containerRef.current) return;
         const observer = new ResizeObserver((entries) => {
             if (entries[0]) {
-                setWidth(entries[0].contentRect.width);
+                setContainerHeight(entries[0].contentRect.height);
             }
         });
         observer.observe(containerRef.current);
         return () => observer.disconnect();
     }, []);
+
+    useEffect(() => {
+        if (!imageCount || imageCount === 0) return;
+
+        const images = Array.from({ length: imageCount }, (_, i) => `/${projectSlug}/images/img-${i}.png`);
+
+        Promise.all(
+            images.map((src) => {
+                return new Promise((resolve) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        resolve({ width: img.width, height: img.height });
+                    };
+                    img.onerror = () => {
+                        resolve({ width: 16, height: 9 }); // fallback aspect ratio
+                    };
+                    img.src = src;
+                });
+            })
+        ).then(setImageDimensions);
+    }, [projectSlug, imageCount]);
 
     if (!imageCount || imageCount === 0) return null;
 
@@ -60,7 +82,7 @@ const SlidingImages = ({ projectSlug, imageCount }) => {
 
     return (
         <div ref={containerRef} className="absolute inset-0 overflow-hidden bg-muted/20">
-            {width > 0 && (
+            {containerHeight > 0 && imageDimensions.length === imageCount && (
                 <motion.div
                     className="flex h-full w-fit"
                     animate={{ x: ["0%", "-50%"] }}
@@ -70,15 +92,22 @@ const SlidingImages = ({ projectSlug, imageCount }) => {
                         duration: 30,
                     }}
                 >
-                    {[...images, ...images].map((src, index) => (
-                        <div
-                            key={index}
-                            style={{ width }}
-                            className="h-full relative flex-shrink-0 border-r border-white/10"
-                        >
-                            <img src={src} alt={`${projectSlug}-slide-${index}`} className="h-full w-full object-contain" />
-                        </div>
-                    ))}
+                    {[...images, ...images].map((src, index) => {
+                        const actualIndex = index % imageCount;
+                        const { width: imgWidth, height: imgHeight } = imageDimensions[actualIndex];
+                        const aspectRatio = imgWidth / imgHeight;
+                        const slideWidth = containerHeight * aspectRatio;
+
+                        return (
+                            <div
+                                key={index}
+                                style={{ width: slideWidth }}
+                                className="h-full relative flex-shrink-0 border-r border-white/10"
+                            >
+                                <img src={src} alt={`${projectSlug}-slide-${index}`} className="h-full w-full object-contain" />
+                            </div>
+                        );
+                    })}
                 </motion.div>
             )}
             <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent" />
