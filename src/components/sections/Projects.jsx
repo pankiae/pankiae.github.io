@@ -89,7 +89,7 @@ const SlidingImages = ({ projectSlug, imageCount }) => {
                     transition={{
                         repeat: Infinity,
                         ease: "linear",
-                        duration: 30,
+                        duration: 20,
                     }}
                 >
                     {[...images, ...images].map((src, index) => {
