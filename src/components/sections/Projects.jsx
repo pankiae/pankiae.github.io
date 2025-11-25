@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Modal } from "@/components/ui/modal";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 const projects = [
     {
@@ -39,16 +39,28 @@ const projects = [
     },
 ];
 
-export function Projects() {
-    const [activeVideo, setActiveVideo] = useState(null);
+const SlidingImages = ({ projectSlug, imageCount }) => {
+    const containerRef = useRef(null);
+    const [width, setWidth] = useState(0);
 
-    const SlidingImages = ({ projectSlug, imageCount }) => {
-        if (!imageCount || imageCount === 0) return null;
+    useEffect(() => {
+        if (!containerRef.current) return;
+        const observer = new ResizeObserver((entries) => {
+            if (entries[0]) {
+                setWidth(entries[0].contentRect.width);
+            }
+        });
+        observer.observe(containerRef.current);
+        return () => observer.disconnect();
+    }, []);
 
-        const images = Array.from({ length: imageCount }, (_, i) => `/${projectSlug}/images/img-${i}.png`);
+    if (!imageCount || imageCount === 0) return null;
 
-        return (
-            <div className="absolute inset-0 overflow-hidden bg-muted/20">
+    const images = Array.from({ length: imageCount }, (_, i) => `/${projectSlug}/images/img-${i}.png`);
+
+    return (
+        <div ref={containerRef} className="absolute inset-0 overflow-hidden bg-muted/20">
+            {width > 0 && (
                 <motion.div
                     className="flex h-full w-fit"
                     animate={{ x: ["0%", "-50%"] }}
@@ -59,15 +71,24 @@ export function Projects() {
                     }}
                 >
                     {[...images, ...images].map((src, index) => (
-                        <div key={index} className="h-full w-auto aspect-[16/10] relative flex-shrink-0 border-r border-white/10">
-                            <img src={src} alt={`${projectSlug}-slide-${index}`} className="h-full w-full object-cover" />
+                        <div
+                            key={index}
+                            style={{ width }}
+                            className="h-full relative flex-shrink-0 border-r border-white/10"
+                        >
+                            <img src={src} alt={`${projectSlug}-slide-${index}`} className="h-full w-full object-contain" />
                         </div>
                     ))}
                 </motion.div>
-                <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent" />
-            </div>
-        );
-    };
+            )}
+            <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent" />
+        </div>
+    );
+};
+
+export function Projects() {
+    const [activeVideo, setActiveVideo] = useState(null);
+
 
     return (
         <section id="projects" className="container mx-auto px-6 py-16 md:py-24 space-y-20">
