@@ -86,6 +86,48 @@ export function Experience() {
                                     ))}
                                 </div>
                             </div>
+
+                            {/* Nested Intern Position (Git-style Tree Hierarchy) */}
+                            {exp.intern && (
+                                <div className="relative mt-6">
+                                    {/* Vertical extension from parent timeline */}
+                                    <div className="absolute -left-[33px] md:-left-[49px] top-0 bottom-0 w-px bg-zinc-200" />
+
+                                    {/* Horizontal branch to nested node */}
+                                    <div className="absolute -left-[33px] md:-left-[49px] top-8 w-8 md:w-10 h-px bg-zinc-200" />
+
+                                    <div className="relative pl-6 pt-2">
+                                        {/* Sub-dot - positioned at end of horizontal branch */}
+                                        <span className="absolute -left-[9px] md:-left-[13px] top-[30px] h-2.5 w-2.5 rounded-full border-2 border-background bg-muted-foreground" />
+
+                                        <div className="flex flex-col gap-3 pt-6">
+                                            <div>
+                                                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-1">
+                                                    <h4 className="text-base font-semibold leading-none text-foreground/80">{exp.intern.role}</h4>
+                                                    <span className="text-xs font-medium text-muted-foreground font-mono bg-muted px-2 py-0.5 rounded">{exp.intern.period}</span>
+                                                </div>
+                                                <div className="flex items-center text-muted-foreground text-xs font-medium opacity-80">
+                                                    <span>{exp.intern.company}</span>
+                                                    <span className="mx-2">•</span>
+                                                    <span>{exp.intern.location}</span>
+                                                </div>
+                                            </div>
+
+                                            <p className="text-muted-foreground/70 leading-relaxed text-sm max-w-xl">
+                                                {exp.intern.description}
+                                            </p>
+
+                                            <div className="flex flex-wrap gap-2">
+                                                {exp.intern.skills.map((skill) => (
+                                                    <span key={skill} className="text-[10px] font-medium text-muted-foreground/70 bg-muted/70 px-2 py-0.5 rounded">
+                                                        {skill}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
                         </motion.div>
                     ))}
                 </div>
