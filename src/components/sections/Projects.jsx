@@ -120,89 +120,81 @@ export function Projects() {
 
 
     return (
-        <section id="projects" className="container mx-auto px-6 py-16 md:py-24 space-y-20">
+        <section id="projects" className="container mx-auto px-6 py-24 space-y-20">
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className="text-center max-w-3xl mx-auto space-y-4"
+                className="flex flex-col md:flex-row justify-between items-end gap-6 max-w-6xl mx-auto border-b border-border pb-8"
             >
-                <h2 className="text-4xl md:text-5xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/60">
-                    Featured Projects
-                </h2>
-                <p className="text-lg text-muted-foreground">
-                    A showcase of my technical journey. Each project represents a unique challenge solved with modern technology and creative engineering.
-                </p>
+                <div className="space-y-4 max-w-2xl">
+                    <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground">
+                        Selected Works
+                    </h2>
+                    <p className="text-lg text-muted-foreground leading-relaxed">
+                        A curated collection of technical solutions. Focusing on scalability, performance, and intelligent automation.
+                    </p>
+                </div>
+                <div className="hidden md:block">
+                    <span className="text-sm font-medium text-muted-foreground">03 — Projects</span>
+                </div>
             </motion.div>
 
-            <div className="flex flex-col gap-24 md:gap-32">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
                 {projects.map((project, index) => (
                     <motion.div
                         key={index}
-                        initial={{ opacity: 0, y: 40 }}
+                        initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        transition={{ duration: 0.7, ease: "easeOut" }}
-                        className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-8 lg:gap-16 items-center`}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: index * 0.1 }}
+                        className={`group flex flex-col bg-card border border-border rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300 ${index === 0 || index === 3 ? 'md:col-span-2' : ''}`}
                     >
                         {/* Visual Side */}
-                        <div className="w-full lg:w-3/5 relative group">
-                            <div className="relative rounded-2xl overflow-hidden border border-border/50 shadow-2xl bg-card/50 aspect-video lg:aspect-[16/9]">
-                                {project.imageCount > 0 ? (
-                                    <SlidingImages projectSlug={project.slug} imageCount={project.imageCount} />
-                                ) : (
-                                    <div className="w-full h-full bg-muted/30 flex items-center justify-center group-hover:bg-muted/40 transition-colors cursor-pointer" onClick={() => setActiveVideo(project.videoUrl)}>
-                                        <Play className="w-20 h-20 text-primary/50 group-hover:scale-110 transition-transform duration-300" />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-60" />
+                        <div className="relative aspect-video w-full bg-muted/30 overflow-hidden">
+                            {project.imageCount > 0 ? (
+                                <SlidingImages projectSlug={project.slug} imageCount={project.imageCount} />
+                            ) : (
+                                <div className="w-full h-full flex items-center justify-center group-hover:scale-105 transition-transform duration-500 bg-secondary/50 cursor-pointer" onClick={() => setActiveVideo(project.videoUrl)}>
+                                    <div className="w-16 h-16 bg-white/90 backdrop-blur rounded-full flex items-center justify-center shadow-sm group-hover:shadow-md transition-all">
+                                        <Play className="w-6 h-6 text-foreground fill-current ml-1" />
                                     </div>
-                                )}
-
-                                {/* Floating Action Button for Video */}
-                                <div className="absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
-                                    <Button size="lg" className="rounded-full shadow-xl" onClick={() => setActiveVideo(project.videoUrl)}>
-                                        <Play className="w-5 h-5 mr-2 fill-current" /> Watch Demo
-                                    </Button>
                                 </div>
+                            )}
+
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-between p-6">
+                                <Button size="sm" variant="secondary" className="backdrop-blur-md bg-white/90 text-black border-none" onClick={() => setActiveVideo(project.videoUrl)}>
+                                    <Play className="w-4 h-4 mr-2" /> Play Demo
+                                </Button>
                             </div>
-                            {/* Decorative background element */}
-                            <div className={`absolute -inset-4 bg-gradient-to-r from-primary/10 to-blue-500/10 rounded-[2rem] -z-10 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
                         </div>
 
                         {/* Content Side */}
-                        <div className="w-full lg:w-2/5 space-y-6">
-                            <div className="space-y-2">
-                                <div className="flex items-center gap-3">
-                                    <h3 className="text-3xl font-bold">{project.title}</h3>
-                                    <div className="h-px flex-1 bg-border/60" />
+                        <div className="flex flex-col flex-grow p-6 md:p-8 space-y-6">
+                            <div className="space-y-3">
+                                <div className="flex justify-between items-start">
+                                    <h3 className="text-2xl font-bold tracking-tight text-foreground group-hover:text-primary transition-colors">{project.title}</h3>
+                                    <div className="flex gap-2">
+                                        <Link href={project.links.demo} target="_blank" className="p-2 rounded-full hover:bg-muted transition-colors text-muted-foreground hover:text-foreground">
+                                            <ExternalLink className="w-5 h-5" />
+                                        </Link>
+                                        <Link href={project.links.repo} target="_blank" className="p-2 rounded-full hover:bg-muted transition-colors text-muted-foreground hover:text-foreground">
+                                            <Github className="w-5 h-5" />
+                                        </Link>
+                                    </div>
                                 </div>
-                                <p className="text-lg text-muted-foreground leading-relaxed">
+                                <p className="text-muted-foreground leading-relaxed">
                                     {project.description}
                                 </p>
                             </div>
 
-                            <div className="flex flex-wrap gap-2">
+                            <div className="flex flex-wrap gap-2 mt-auto pt-4">
                                 {project.tags.map((tag) => (
-                                    <Badge key={tag} variant="secondary" className="px-3 py-1 text-sm bg-secondary/50 hover:bg-secondary/80 transition-colors">
+                                    <Badge key={tag} variant="secondary" className="px-2.5 py-0.5 text-xs font-medium bg-secondary text-secondary-foreground border border-border/50 rounded-md">
                                         {tag}
                                     </Badge>
                                 ))}
-                            </div>
-
-                            <div className="flex flex-wrap gap-4 pt-4">
-                                <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/20" asChild>
-                                    <Link href={project.links.demo} target="_blank">
-                                        <ExternalLink className="w-5 h-5 mr-2" /> Live Demo
-                                    </Link>
-                                </Button>
-                                <Button variant="outline" size="lg" onClick={() => setActiveVideo(project.videoUrl)}>
-                                    <Play className="w-5 h-5 mr-2" /> Watch Video
-                                </Button>
-                                <Button variant="outline" size="lg" asChild>
-                                    <Link href={project.links.repo} target="_blank">
-                                        <Github className="w-5 h-5 mr-2" /> Source Code
-                                    </Link>
-                                </Button>
                             </div>
                         </div>
                     </motion.div>
@@ -210,7 +202,7 @@ export function Projects() {
             </div>
 
             <Modal isOpen={!!activeVideo} onClose={() => setActiveVideo(null)}>
-                <div className="aspect-video w-full bg-black rounded-xl overflow-hidden shadow-2xl">
+                <div className="aspect-video w-full bg-black rounded-lg overflow-hidden shadow-2xl">
                     {activeVideo && (
                         <video
                             src={activeVideo}

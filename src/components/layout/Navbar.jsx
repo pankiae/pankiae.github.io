@@ -34,8 +34,9 @@ export function Navbar() {
             )}
         >
             <div className="container mx-auto px-6 flex items-center justify-between">
-                <Link href="/" className="text-2xl font-bold tracking-tighter hover:text-muted-foreground transition-colors">
-                    Portfolio.
+                <Link href="/" className="flex flex-col text-2xl font-bold tracking-tighter hover:text-muted-foreground transition-colors leading-none">
+                    Pankaj Jarial
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mt-1">Applied AI Engineer</span>
                 </Link>
 
                 {/* Desktop Nav */}

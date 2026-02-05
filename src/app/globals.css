@@ -1,45 +1,43 @@
 @import "tailwindcss";
 
 :root {
-  /* Lego Color Palette */
-  --background: #ffe6e6;
-  --foreground: #111111;
+  /* Premium Minimalist Palette (Zinc/Slate base) */
+  --background: #ffffff;
+  --foreground: #09090b;
+  /* Zinc 950 */
 
   --card: #ffffff;
-  --card-foreground: #111111;
+  --card-foreground: #09090b;
 
   --popover: #ffffff;
-  --popover-foreground: #111111;
+  --popover-foreground: #09090b;
 
-  --primary: #0055BF;
-  /* Lego Blue */
-  --primary-foreground: #ffffff;
+  --primary: #18181b;
+  /* Zinc 900 - Strong Black/Grey for primary actions */
+  --primary-foreground: #fafafa;
 
-  --secondary: #F7D117;
-  /* Lego Yellow */
-  --secondary-foreground: #111111;
+  --secondary: #f4f4f5;
+  /* Zinc 100 - Subtle soft grey */
+  --secondary-foreground: #18181b;
 
-  --tertiary: #FF8800;
-  /* Lego Orange */
-  --tertiary-foreground: #ffffff;
+  --muted: #f4f4f5;
+  --muted-foreground: #71717a;
+  /* Zinc 500 - Professional muted text */
 
-  --muted: #fdf2f2;
-  --muted-foreground: #111111;
+  --accent: #eff6ff;
+  /* Blue 50 - Very subtle tint */
+  --accent-foreground: #2563eb;
+  /* Blue 600 - Professional accent */
 
-  --accent: #237841;
-  /* Lego Green */
-  --accent-foreground: #ffffff;
+  --destructive: #ef4444;
+  --destructive-foreground: #fafafa;
 
-  --destructive: #E3000B;
-  /* Lego Red */
-  --destructive-foreground: #ffffff;
+  --border: #e4e4e7;
+  /* Zinc 200 - Thin, subtle borders */
+  --input: #e4e4e7;
+  --ring: #18181b;
 
-  --border: #000000;
-  /* Thick black borders for cartoon feel */
-  --input: #000000;
-  --ring: #0055BF;
-
-  --radius: 0.75rem;
+  --radius: 0.5rem;
 }
 
 @theme {
@@ -48,7 +46,7 @@
 }
 
 html,
-body {
+body.bg-background {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, sans-serif;
@@ -56,32 +54,52 @@ body {
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
   width: 100%;
+  scroll-behavior: smooth;
 }
 
-/* Custom Scrollbar - Playful & Thick */
+/* Refined Scrollbar */
 ::-webkit-scrollbar {
-  width: 16px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--secondary);
-  border-left: 2px solid var(--border);
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--primary);
-  border: 2px solid var(--border);
+  background: #d4d4d8;
+  /* Zinc 300 */
   border-radius: 99px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--destructive);
+  background: #a1a1aa;
+  /* Zinc 400 */
 }
 
-/* Utility classes for Lego/Cartoon Block style */
-.glass {
-  background: rgba(255, 255, 255, 0.95);
-  border: 3px solid #000000;
-  box-shadow: 6px 6px 0px #000000;
-  /* Hard shadow for 3D block effect */
+/* Utilities for Modern Minimalist Design */
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(228, 228, 231, 0.6);
+  /* Zinc 200 with opacity */
+}
+
+/* Subtle gradient mesh background used in sections */
+.bg-mesh {
+  background-color: #ffffff;
+  background-image:
+    radial-gradient(at 0% 0%, hsla(253, 16%, 7%, 0) 0, transparent 50%),
+    radial-gradient(at 50% 0%, hsla(225, 39%, 30%, 0) 0, transparent 50%),
+    radial-gradient(at 100% 0%, hsla(339, 49%, 30%, 0) 0, transparent 50%);
+}
+
+.text-gradient {
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(to right, #18181b, #52525b);
+  /* Zinc 900 to 600 */
 }

@@ -11,23 +11,23 @@ const skills = [
 
 export function About() {
     return (
-        <section id="about" className="container mx-auto px-6 py-6 md:py-10 bg-blue-50/60">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 items-center">
+        <section id="about" className="container mx-auto px-6 py-24 bg-muted/30">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-start max-w-6xl mx-auto">
                 <motion.div
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                 >
-                    <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6">About Me</h2>
-                    <div className="space-y-4 text-muted-foreground text-lg">
+                    <h2 className="text-3xl font-bold tracking-tight mb-8 text-foreground">About Me.</h2>
+                    <div className="space-y-6 text-muted-foreground text-lg leading-relaxed font-light">
                         <p>
-                            I&apos;m a Generative AI Engineer with a passion for building scalable, production-grade AI systems.
-                            My expertise lies in developing LLM-driven applications, RAG architectures, and multi-model AI agents.
+                            I&apos;m a <span className="font-medium text-foreground">Applied AI Engineer</span> dedicated to building scalable, production-grade AI systems.
+                            My expertise lies in architecting LLM-driven applications, RAG pipelines, and autonomous multi-model agents.
                         </p>
                         <p>
-                            I have experience working with Python, FastAPI, and PyTorch to create intelligent solutions that solve real-world problems.
-                            I enjoy exploring new technologies and contributing to the AI community.
+                            With a strong foundation in Python, FastAPI, and PyTorch, I craft intelligent solutions that solve complex real-world problems.
+                            I am constantly exploring the bleeding edge of AI to deliver impactful innovative software.
                         </p>
                     </div>
                 </motion.div>
@@ -37,12 +37,16 @@ export function About() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
-                    className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-8"
+                    className="space-y-8"
                 >
-                    <h3 className="text-xl font-semibold mb-6">Technical Skills</h3>
+                    <div className="space-y-4">
+                        <h3 className="text-xl font-semibold text-foreground border-l-2 border-primary pl-4">Technical Proficiency</h3>
+                        <p className="text-sm text-muted-foreground">Core technologies and frameworks I use to build systems.</p>
+                    </div>
+
                     <div className="flex flex-wrap gap-2">
                         {skills.map((skill, index) => (
-                            <Badge key={index} variant="secondary" className="text-base py-1 px-3">
+                            <Badge key={index} variant="secondary" className="text-sm py-1.5 px-3.5 bg-background border border-border text-foreground/80 rounded-full font-normal shadow-sm">
                                 {skill}
                             </Badge>
                         ))}
