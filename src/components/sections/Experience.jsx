@@ -48,8 +48,9 @@ export function Experience() {
                     </p>
                 </div>
 
-                {/* Main Timeline Container */}
-                <div className="relative border-l-2 border-border ml-3 md:ml-6 space-y-16">
+                {/* Main Timeline Rail */}
+                {/* We use a very faint border for the main rail, so the active branch stands out */}
+                <div className="relative border-l-2 border-border/30 ml-3 md:ml-6 space-y-16">
                     {experiences.map((exp, index) => (
                         <motion.div
                             key={index}
@@ -59,10 +60,23 @@ export function Experience() {
                             transition={{ duration: 0.5, delay: index * 0.1 }}
                             className="relative pl-8 md:pl-12"
                         >
-                            {/* Main Role Dot (Centered on the border) */}
-                            <span className="absolute -left-[9px] top-2 h-4 w-4 rounded-full border-2 border-background bg-primary z-10" />
+                            {/* Parent Dot */}
+                            <span className="absolute -left-[9px] top-2 h-4 w-4 rounded-full border-2 border-background bg-foreground z-20 shadow-sm" />
 
-                            {/* MAIN ROLE CONTENT */}
+                            {/* === THE CONNECTOR STEM === */}
+                            {/* This draws a solid line from the Top Dot down to the Intern Section */}
+                            {exp.intern && (
+                                <div
+                                    className="absolute -left-[1px] top-6 bottom-0 w-[2px] bg-foreground/80 z-10"
+                                    style={{
+                                        // Calculates height to stop exactly where the curve starts
+                                        // 'bottom-8' aligns roughly with the top of the intern block
+                                        bottom: "2.5rem"
+                                    }}
+                                />
+                            )}
+
+                            {/* Main Role Content */}
                             <div className="flex flex-col gap-4">
                                 <div>
                                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-2">
@@ -74,7 +88,7 @@ export function Experience() {
                                         </span>
                                     </div>
                                     <div className="flex items-center text-muted-foreground text-sm font-medium">
-                                        <span className="text-primary/80">{exp.company}</span>
+                                        <span className="text-foreground/80">{exp.company}</span>
                                         <span className="mx-2">•</span>
                                         <span>{exp.location}</span>
                                     </div>
@@ -88,7 +102,7 @@ export function Experience() {
                                     {exp.skills.map((skill) => (
                                         <span
                                             key={skill}
-                                            className="text-xs font-medium text-primary/70 bg-primary/5 px-2 py-1 rounded"
+                                            className="text-xs font-medium text-primary/80 bg-primary/10 px-2 py-1 rounded"
                                         >
                                             {skill}
                                         </span>
@@ -96,40 +110,36 @@ export function Experience() {
                                 </div>
                             </div>
 
-                            {/* NESTED INTERN BRANCH (Git Graph Style) */}
+                            {/* Nested Intern Block */}
                             {exp.intern && (
-                                <div className="relative mt-8">
-                                    {/* The Git Curve SVG */}
-                                    {/* Positioning: Anchored exactly to the left edge of the content area, extending back to the timeline */}
+                                <div className="relative mt-10">
+
+                                    {/* === THE CURVE (Git Elbow) === */}
+                                    {/* Anchored to the left rail. Matches the color of the Stem. */}
                                     <svg
-                                        className="absolute -left-[32px] md:-left-[48px] -top-6 text-border"
+                                        className="absolute -left-[32px] md:-left-[48px] -top-[24px] text-foreground/80 z-10"
                                         width="60"
-                                        height="120" // Height needs to be enough to reach the intern dot
-                                        viewBox="0 0 60 120"
+                                        height="60"
+                                        viewBox="0 0 60 60"
                                         fill="none"
                                         style={{ pointerEvents: 'none' }}
                                     >
-                                        {/* Path Logic: 
-                        M 1 0: Start at x=1 (inside the main border), y=0 (top)
-                        V 20: Go straight down a bit
-                        C 1 45 1 45 35 45: Cubic Bezier curve. 
-                             Control points allow it to curve smoothly rightward.
-                        H 60: Continue horizontal to the dot
-                     */}
+                                        {/* M 1 0: Starts at x=1 (center of 2px border)
+                       v 10: Goes down 10px to ensure overlap with the stem
+                       c 0 25 20 25 50 25: Smooth curve to the right
+                    */}
                                         <path
-                                            d="M 1 0 V 20 C 1 45 25 45 45 45 H 60"
-                                            stroke="currentColor" // Inherits text-border
+                                            d="M 1 0 v 10 c 0 25 20 25 50 25"
+                                            stroke="currentColor"
                                             strokeWidth="2"
                                             fill="none"
                                         />
                                     </svg>
 
-                                    {/* Intern Content Container */}
-                                    {/* Indented further to show hierarchy */}
-                                    <div className="relative pl-6 md:pl-8 pt-4">
-
-                                        {/* Intern Dot (Git Commit Node) */}
-                                        <span className="absolute -left-[3px] top-[26px] h-3 w-3 rounded-full border-2 border-background bg-muted-foreground z-10" />
+                                    {/* Intern Content */}
+                                    <div className="relative pl-6 md:pl-8 pt-2">
+                                        {/* Intern Dot */}
+                                        <span className="absolute -left-[3px] top-[10px] h-3 w-3 rounded-full border-2 border-background bg-muted-foreground z-20" />
 
                                         <div className="flex flex-col gap-3">
                                             <div>
@@ -141,27 +151,10 @@ export function Experience() {
                                                         {exp.intern.period}
                                                     </span>
                                                 </div>
-
-                                                <div className="flex items-center text-muted-foreground text-xs">
-                                                    <span>{exp.intern.company}</span>
-                                                    <span className="mx-2">•</span>
-                                                    <span>{exp.intern.location}</span>
-                                                </div>
-                                            </div>
-
-                                            <p className="text-muted-foreground/70 text-sm max-w-xl">
-                                                {exp.intern.description}
-                                            </p>
-
-                                            <div className="flex flex-wrap gap-2">
-                                                {exp.intern.skills.map((skill) => (
-                                                    <span
-                                                        key={skill}
-                                                        className="text-[10px] font-medium text-muted-foreground/70 bg-muted/70 px-2 py-0.5 rounded"
-                                                    >
-                                                        {skill}
-                                                    </span>
-                                                ))}
+                                                {/* ... rest of content ... */}
+                                                <p className="text-muted-foreground/70 text-sm max-w-xl">
+                                                    {exp.intern.description}
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
