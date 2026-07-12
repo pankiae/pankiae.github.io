@@ -1,87 +1,138 @@
 @import "tailwindcss";
 
 :root {
-  /* Lego Color Palette */
-  --background: #ffe6e6;
-  --foreground: #111111;
+  /* Newspaper / Editorial & Google Color Palette */
+  --background: #FAF9F6;      /* Off-white / Book paper color */
+  --foreground: #121212;      /* Off-black / Ink color */
 
   --card: #ffffff;
-  --card-foreground: #111111;
+  --card-foreground: #121212;
 
   --popover: #ffffff;
-  --popover-foreground: #111111;
+  --popover-foreground: #121212;
 
-  --primary: #0055BF;
-  /* Lego Blue */
+  /* Google Colors for Accent & Contrast */
+  --primary: #4285F4;         /* Google Blue */
   --primary-foreground: #ffffff;
 
-  --secondary: #F7D117;
-  /* Lego Yellow */
-  --secondary-foreground: #111111;
+  --secondary: #EA4335;       /* Google Red */
+  --secondary-foreground: #ffffff;
 
-  --tertiary: #FF8800;
-  /* Lego Orange */
-  --tertiary-foreground: #ffffff;
-
-  --muted: #fdf2f2;
-  --muted-foreground: #111111;
-
-  --accent: #237841;
-  /* Lego Green */
+  --accent: #34A853;          /* Google Green */
   --accent-foreground: #ffffff;
 
-  --destructive: #E3000B;
-  /* Lego Red */
+  --tertiary: #FBBC05;        /* Google Yellow */
+  --tertiary-foreground: #121212;
+
+  --muted: #F1F3F4;
+  --muted-foreground: #5F6368;
+
+  --destructive: #EA4335;
   --destructive-foreground: #ffffff;
 
-  --border: #000000;
-  /* Thick black borders for cartoon feel */
-  --input: #000000;
-  --ring: #0055BF;
+  --border: #E0E0E0;          /* Elegant thin gray borders */
+  --border-editorial: #121212; /* Solid black divider line for newspaper look */
+  --input: #E0E0E0;
+  --ring: #4285F4;
 
-  --radius: 0.75rem;
+  --radius: 0.125rem;         /* Flat, editorial style corners */
 }
 
 @theme {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), monospace;
+  --font-serif: Georgia, Cambria, "Times New Roman", Times, serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-tertiary: var(--tertiary);
+  --color-tertiary-foreground: var(--tertiary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
 }
 
 html,
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), system-ui, sans-serif;
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
   width: 100%;
 }
 
-/* Custom Scrollbar - Playful & Thick */
+/* Custom Scrollbar - Clean & Minimal */
 ::-webkit-scrollbar {
-  width: 16px;
+  width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--secondary);
-  border-left: 2px solid var(--border);
+  background: var(--background);
+  border-left: 1px solid var(--border);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--primary);
-  border: 2px solid var(--border);
-  border-radius: 99px;
+  background: #C1C1C1;
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--destructive);
+  background: #A8A8A8;
 }
 
-/* Utility classes for Lego/Cartoon Block style */
 .glass {
-  background: rgba(255, 255, 255, 0.95);
-  border: 3px solid #000000;
-  box-shadow: 6px 6px 0px #000000;
-  /* Hard shadow for 3D block effect */
+  background: rgba(250, 249, 246, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+/* Magazine / Editorial Specific Utilities */
+.dropcap::first-letter {
+  font-family: var(--font-serif);
+  font-size: 3.5rem;
+  font-weight: 900;
+  float: left;
+  line-height: 0.8;
+  margin-right: 0.6rem;
+  margin-top: 0.15rem;
+  color: var(--primary);
+  text-transform: uppercase;
+}
+
+.magazine-divider {
+  border-top: 1px solid var(--border-editorial);
+  position: relative;
+}
+
+.magazine-divider::after {
+  content: "";
+  display: block;
+  border-top: 1px solid var(--border-editorial);
+  margin-top: 2px;
+  width: 100%;
+}
+
+.magazine-sub {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
 }

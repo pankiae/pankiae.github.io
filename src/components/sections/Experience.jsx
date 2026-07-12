@@ -33,54 +33,53 @@ const experiences = [
 
 export function Experience() {
     return (
-        <section id="experience" className="container mx-auto px-6 py-6 md:py-10 bg-yellow-50/60">
+        <section id="experience" className="container mx-auto px-6 py-12 md:py-16">
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className="flex flex-col gap-6 md:gap-10"
+                className="flex flex-col gap-4 md:gap-6"
             >
                 <div className="flex flex-col gap-4 items-center text-center">
-                    <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Experience</h2>
-                    <p className="text-muted-foreground max-w-2xl">
+                    <h2 className="text-4xl md:text-5xl font-serif font-extrabold tracking-tight text-foreground">Experience</h2>
+                    <div className="w-12 h-0.5 bg-primary my-1" />
+                    <p className="text-muted-foreground max-w-2xl font-sans text-base">
                         My professional journey in the tech industry.
                     </p>
                 </div>
 
-                <div className="max-w-3xl mx-auto w-full space-y-8">
+                <div className="max-w-4xl mx-auto w-full space-y-8">
                     {experiences.map((exp, index) => (
                         <motion.div
                             key={index}
-                            initial={{ opacity: 0, x: -20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
+                            className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 pt-8 border-t border-neutral-800/10"
                         >
-                            <Card className="bg-card/50 backdrop-blur-sm border-border/50">
-                                <CardHeader>
-                                    <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-2">
-                                        <div>
-                                            <CardTitle className="text-xl">{exp.role}</CardTitle>
-                                            <CardDescription className="text-base font-medium mt-1">{exp.company}</CardDescription>
-                                        </div>
-                                        <div className="text-sm text-muted-foreground text-right">
-                                            <div>{exp.period}</div>
-                                            <div>{exp.location}</div>
-                                        </div>
-                                    </div>
-                                </CardHeader>
-                                <CardContent className="space-y-4">
-                                    <p className="text-muted-foreground">{exp.description}</p>
-                                    <div className="flex flex-wrap gap-2">
-                                        {exp.skills.map((skill) => (
-                                            <Badge key={skill} variant="outline" className="text-xs">
-                                                {skill}
-                                            </Badge>
-                                        ))}
-                                    </div>
-                                </CardContent>
-                            </Card>
+                            {/* Time & Location sidebar column */}
+                            <div className="md:col-span-3 font-mono text-xs text-muted-foreground uppercase space-y-1">
+                                <div className="text-primary font-bold">{exp.period}</div>
+                                <div>{exp.location}</div>
+                            </div>
+
+                            {/* Job details column */}
+                            <div className="md:col-span-9 space-y-4">
+                                <div className="space-y-1">
+                                    <h3 className="text-2xl font-serif font-black uppercase tracking-tight text-foreground">{exp.role}</h3>
+                                    <h4 className="text-sm font-mono uppercase tracking-wider text-secondary font-bold">{exp.company}</h4>
+                                </div>
+                                <p className="text-base text-muted-foreground leading-relaxed font-sans">{exp.description}</p>
+                                <div className="flex flex-wrap gap-1.5 pt-2">
+                                    {exp.skills.map((skill) => (
+                                        <span key={skill} className="text-xs px-2 py-0.5 border border-neutral-300 text-muted-foreground uppercase tracking-tight font-mono">
+                                            {skill}
+                                        </span>
+                                    ))}
+                                </div>
+                            </div>
                         </motion.div>
                     ))}
                 </div>

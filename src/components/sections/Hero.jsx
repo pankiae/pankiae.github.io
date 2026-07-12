@@ -5,49 +5,102 @@ import { ArrowRight, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
+const skills = [
+    "Python", "FastAPI", "Django", "PyTorch", "PostgreSQL",
+    "MongoDB", "Redis", "Docker", "AWS", "LLMs",
+    "RAG", "LangChain", "Multi-Model Agents", "Git"
+];
+
 export function Hero() {
     return (
-        <section id="home" className="min-h-[calc(100vh-5rem)] flex items-center justify-center relative overflow-hidden bg-background">
-            {/* Background Gradients */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[200%] md:w-[1000px] h-[500px] bg-primary/5 rounded-full blur-3xl -z-10" />
-            <div className="absolute bottom-0 right-0 w-[150%] md:w-[800px] h-[600px] bg-secondary/10 rounded-full blur-3xl -z-10" />
-
-            <div className="container mx-auto px-6 py-8 md:py-12 flex flex-col items-center text-center gap-6 md:gap-8">
+        <section id="home" className="pt-8 pb-12 md:pt-12 md:pb-16 relative overflow-hidden bg-background">
+            <div className="container mx-auto px-6 max-w-6xl">
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
+                    transition={{ duration: 0.6 }}
+                    className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start"
                 >
-                    <span className="inline-block py-1 px-3 rounded-full bg-secondary text-secondary-foreground text-sm font-medium mb-6">
-                        Available for new projects
-                    </span>
-                    <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight mb-6 bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/50 px-4">
-                        Generative AI Engineer <br className="hidden md:block" />
-                        building intelligent systems.
-                    </h1>
-                    <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
-                        I&apos;m Pankaj Jarial, a Generative AI Engineer with 2.5+ years of experience building LLM-driven and multimodal AI systems using Python, FastAPI, and PyTorch.
-                    </p>
-                </motion.div>
+                    {/* Left Column (4 cols): Name, Title, and Profile Pic */}
+                    <div className="lg:col-span-4 space-y-6">
+                        <div className="space-y-2">
+                            <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-black tracking-tight leading-none text-foreground uppercase">
+                                Pankaj Jarial
+                            </h1>
+                            <span className="text-muted-foreground font-sans font-light text-xl sm:text-2xl md:text-3xl tracking-normal block lowercase italic">
+                                AI Software Engineer
+                            </span>
+                        </div>
 
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
-                    className="flex flex-col sm:flex-row gap-4"
-                >
-                    <Button size="lg" asChild>
-                        <Link href="#projects">
-                            View Projects <ArrowRight className="ml-2 w-4 h-4" />
-                        </Link>
-                    </Button>
-                    <Button size="lg" variant="outline" asChild>
-                        <Link href="/resume.pdf" target="_blank">
-                            Download Resume <Download className="ml-2 w-4 h-4" />
-                        </Link>
-                    </Button>
+                        {/* Profile Picture directly below Name & Title */}
+                        <div className="relative aspect-[3/4] w-full overflow-hidden border border-border bg-neutral-100 rounded-sm shadow-sm">
+                            <img
+                                src="/images/profile/IMG_8013~2.JPG"
+                                alt="Pankaj Jarial Profile"
+                                className="object-cover w-full h-full grayscale hover:grayscale-0 transition-all duration-500"
+                            />
+                        </div>
+                    </div>
+
+                    {/* Right Column (8 cols): Biography Summary, Experience Stats, and Core Skills */}
+                    <div className="lg:col-span-8 space-y-6 lg:border-l border-neutral-800/10 lg:pl-8 lg:pt-2">
+                        {/* Summary */}
+                        <div className="space-y-4 text-base md:text-lg text-muted-foreground leading-relaxed font-sans">
+                            <p className="dropcap text-foreground font-medium">
+                                I&apos;m an AI Software Engineer with 3+ years of experience specializing in building production-grade AI systems, multi-model autonomous agents, and RAG architectures.
+                            </p>
+                            <p>
+                                Leveraging Python, FastAPI, and PyTorch, I design, optimize, and deploy scalable LLM-driven applications that solve complex real-world challenges. My approach focuses on combining robust software engineering with the latest research in cognitive architectures and autonomous pipelines.
+                            </p>
+                        </div>
+
+                        <div className="h-px bg-neutral-800/10" />
+
+                        {/* Experience Specifications */}
+                        <div className="space-y-2">
+                            <span className="text-xs font-mono uppercase tracking-wider text-secondary font-bold block">// Experience & Details</span>
+                            <div className="space-y-2 font-mono text-xs sm:text-sm max-w-md">
+                                <div className="flex justify-between border-b border-dashed border-neutral-300 pb-1">
+                                    <span className="text-muted-foreground">Experience:</span>
+                                    <span className="font-bold text-foreground">3+ Years</span>
+                                </div>
+                                <div className="flex justify-between border-b border-dashed border-neutral-300 pb-1">
+                                    <span className="text-muted-foreground">Location:</span>
+                                    <span className="font-bold text-foreground">Remote | India</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="h-px bg-neutral-800/10" />
+
+                        {/* Core Skills */}
+                        <div className="space-y-3">
+                            <span className="text-xs font-mono uppercase tracking-wider text-accent font-bold block">// Core Skills</span>
+                            <div className="flex flex-wrap gap-1.5">
+                                {skills.map((skill) => (
+                                    <span key={skill} className="text-xs px-2 py-0.5 border border-neutral-300 text-muted-foreground uppercase tracking-tight font-mono">
+                                        {skill}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Actions */}
+                        <div className="flex flex-col sm:flex-row gap-3 pt-4 max-w-md">
+                            <Button size="default" variant="default" className="flex-1" asChild>
+                                <Link href="#projects">
+                                    View Projects <ArrowRight className="ml-2 w-4 h-4" />
+                                </Link>
+                            </Button>
+                            <Button size="default" variant="outline" className="flex-1" asChild>
+                                <Link href="/resume.pdf" target="_blank">
+                                    Resume <Download className="ml-2 w-4 h-4" />
+                                </Link>
+                            </Button>
+                        </div>
+                    </div>
                 </motion.div>
             </div>
-        </section >
+        </section>
     );
 }
