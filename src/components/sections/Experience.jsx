@@ -42,9 +42,9 @@ export function Experience() {
                 className="flex flex-col gap-4 md:gap-6"
             >
                 <div className="flex flex-col gap-4 items-center text-center">
-                    <h2 className="text-4xl md:text-5xl font-serif font-extrabold tracking-tight text-foreground">Experience</h2>
+                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-extrabold tracking-tight text-foreground">Experience</h2>
                     <div className="w-12 h-0.5 bg-primary my-1" />
-                    <p className="text-muted-foreground max-w-2xl font-sans text-base">
+                    <p className="text-muted-foreground max-w-2xl font-sans text-base md:text-lg">
                         My professional journey in the tech industry.
                     </p>
                 </div>
@@ -60,7 +60,7 @@ export function Experience() {
                             className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 pt-8 border-t border-neutral-800/10"
                         >
                             {/* Time & Location sidebar column */}
-                            <div className="md:col-span-3 font-mono text-xs text-muted-foreground uppercase space-y-1">
+                            <div className="md:col-span-3 font-mono text-xs md:text-sm text-muted-foreground uppercase space-y-1">
                                 <div className="text-primary font-bold">{exp.period}</div>
                                 <div>{exp.location}</div>
                             </div>
@@ -68,13 +68,13 @@ export function Experience() {
                             {/* Job details column */}
                             <div className="md:col-span-9 space-y-4">
                                 <div className="space-y-1">
-                                    <h3 className="text-2xl font-serif font-black uppercase tracking-tight text-foreground">{exp.role}</h3>
-                                    <h4 className="text-sm font-mono uppercase tracking-wider text-secondary font-bold">{exp.company}</h4>
+                                    <h3 className="text-2xl lg:text-3xl font-serif font-black tracking-tight text-foreground">{exp.role}</h3>
+                                    <h4 className="text-sm md:text-base font-mono tracking-wider text-secondary font-bold">{exp.company}</h4>
                                 </div>
-                                <p className="text-base text-muted-foreground leading-relaxed font-sans">{exp.description}</p>
+                                <p className="text-base md:text-lg text-muted-foreground leading-relaxed font-sans">{exp.description}</p>
                                 <div className="flex flex-wrap gap-1.5 pt-2">
                                     {exp.skills.map((skill) => (
-                                        <span key={skill} className="text-xs px-2 py-0.5 border border-neutral-300 text-muted-foreground uppercase tracking-tight font-mono">
+                                        <span key={skill} className="text-xs md:text-sm px-2 py-0.5 border border-neutral-300 text-muted-foreground uppercase tracking-tight font-mono">
                                             {skill}
                                         </span>
                                     ))}

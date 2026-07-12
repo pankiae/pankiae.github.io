@@ -25,10 +25,10 @@ export function Hero() {
                     <div className="contents md:block md:col-span-4 md:space-y-6">
                         {/* Name and Job Title Block */}
                         <div className="space-y-2 mb-4 md:mb-0">
-                            <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-black tracking-tight leading-none text-foreground uppercase">
+                            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-black tracking-tight leading-none text-foreground">
                                 Pankaj Jarial
                             </h1>
-                            <span className="text-muted-foreground font-sans font-light text-xl sm:text-2xl md:text-3xl tracking-normal block italic">
+                            <span className="text-muted-foreground font-sans font-light text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-normal block italic">
                                 AI Software Engineer
                             </span>
                         </div>
@@ -46,7 +46,7 @@ export function Hero() {
                     {/* Right Column Wrapper - contents style for mobile wrapper removal */}
                     <div className="contents md:block md:col-span-8 md:space-y-6 md:border-l border-neutral-800/10 md:pl-8 md:pt-2">
                         {/* Summary / Biography */}
-                        <div className="space-y-4 text-base md:text-lg text-muted-foreground leading-relaxed font-sans mb-6 md:mb-0">
+                        <div className="space-y-4 text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed font-sans mb-6 md:mb-0">
                             <p className="dropcap text-foreground font-medium">
                                 I&apos;m an AI Software Engineer with 3+ years of experience specializing in building production-grade AI systems, multi-model autonomous agents, and RAG architectures.
                             </p>
@@ -56,7 +56,7 @@ export function Hero() {
                         </div>
 
                         {/* Social & Contact Links */}
-                        <div className="flex flex-wrap gap-x-6 gap-y-2.5 border-t border-b border-dashed border-neutral-300 py-3 font-sans text-xs sm:text-sm clear-both md:clear-none mb-6 md:mb-0">
+                        <div className="flex flex-wrap gap-x-6 gap-y-2.5 border-t border-b border-dashed border-neutral-300 py-3 font-sans text-xs sm:text-sm md:text-base clear-both md:clear-none mb-6 md:mb-0">
                             <div className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
                                 <Github className="w-4 h-4 shrink-0 text-[#24292e]" />
                                 <Link href="https://github.com/pankiae" target="_blank" className="hover:underline truncate text-foreground font-medium">
@@ -79,8 +79,8 @@ export function Hero() {
 
                         {/* Experience Specifications */}
                         <div className="space-y-2 mb-6 md:mb-0">
-                            <span className="text-xs font-mono uppercase tracking-wider text-secondary font-bold block">// Experience & Details</span>
-                            <div className="space-y-2 font-mono text-xs sm:text-sm max-w-md">
+                            <span className="text-xs md:text-sm font-mono uppercase tracking-wider text-secondary font-bold block">// Experience & Details</span>
+                            <div className="space-y-2 font-mono text-xs sm:text-sm md:text-base max-w-md">
                                 <div className="flex justify-between border-b border-dashed border-neutral-300 pb-1">
                                     <span className="text-muted-foreground">Experience:</span>
                                     <span className="font-bold text-foreground">3+ Years</span>
@@ -96,10 +96,10 @@ export function Hero() {
 
                         {/* Core Skills */}
                         <div className="space-y-3 mb-6 md:mb-0">
-                            <span className="text-xs font-mono uppercase tracking-wider text-accent font-bold block">// Core Skills</span>
+                            <span className="text-xs md:text-sm font-mono uppercase tracking-wider text-accent font-bold block">// Core Skills</span>
                             <div className="flex flex-wrap gap-1.5">
                                 {skills.map((skill) => (
-                                    <span key={skill} className="text-sm px-2.5 py-1 border border-neutral-300 text-foreground font-semibold tracking-tight font-mono">
+                                    <span key={skill} className="text-sm md:text-base px-2.5 py-1 border border-neutral-300 text-foreground font-semibold tracking-tight font-mono">
                                         {skill}
                                     </span>
                                 ))}
@@ -108,12 +108,12 @@ export function Hero() {
 
                         {/* Actions */}
                         <div className="flex flex-col sm:flex-row gap-3 pt-4 max-w-md">
-                            <Button size="default" variant="default" className="flex-1" asChild>
+                            <Button size="default" variant="default" className="flex-1 text-sm md:text-base font-semibold" asChild>
                                 <Link href="#projects">
                                     View Projects <ArrowRight className="ml-2 w-4 h-4" />
                                 </Link>
                             </Button>
-                            <Button size="default" variant="outline" className="flex-1" asChild>
+                            <Button size="default" variant="outline" className="flex-1 text-sm md:text-base font-semibold" asChild>
                                 <Link href="/resume.pdf" target="_blank">
                                     Resume <Download className="ml-2 w-4 h-4" />
                                 </Link>
