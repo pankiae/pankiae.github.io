@@ -1,7 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ArrowRight, Download, Github, Linkedin, Mail } from "lucide-react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowRight, Download, Github, Linkedin, Mail, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
@@ -11,7 +12,27 @@ const skills = [
     "RAG", "LangChain", "Multi-Model Agents", "Git"
 ];
 
+const experiences = [
+    {
+        role: "AI/ML Engineer Associate - level 3",
+        company: "smartData Enterprises Inc.",
+        location: "Mohali, Punjab",
+        period: "Sept 2025 - Present",
+        description: "Working on traditional ML and AI Regulation projects. Building Computer Vision tools for object detection based on text prompts.",
+        skills: ["Computer Vision", "ML", "AI Regulation"]
+    },
+    {
+        role: "Gen AI Python Engineer",
+        company: "Tricky WebSolutions Pvt. Ltd.",
+        location: "Mohali, Punjab",
+        period: "May 2023 - Sept 2025",
+        description: "Deployed AI-agent workflows from scratch using Python function-calling patterns, focused on lightweight dependencies and simplified debugging. Built robust RAG pipelines, integrated vector databases, and contributed to modular backend architecture improvements.",
+        skills: ["Python", "AI Agents", "Function Calling", "RAG", "Vector DB", "Gen AI"]
+    }
+];
+
 export function Hero() {
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     return (
         <section id="home" className="min-h-screen min-h-dvh flex items-center pt-8 pb-12 md:py-16 relative overflow-hidden bg-background">
             <div className="container mx-auto px-6 max-w-6xl">
@@ -45,6 +66,24 @@ export function Hero() {
 
                     {/* Right Column Wrapper - contents style for mobile wrapper removal */}
                     <div className="contents md:block md:col-span-8 md:space-y-6 md:border-l border-neutral-800/10 md:pl-8 md:pt-2">
+                        {/* Section Header with Experience Badge */}
+                        <div className="flex justify-between items-start gap-4 mb-4 md:mb-0">
+                            <div className="pt-2">
+                                <span className="text-xs md:text-sm font-mono tracking-wider text-secondary font-bold block">// Professional Journey</span>
+                            </div>
+                            
+                            {/* Highlighted Experience Badge (Clickable to open Sidebar) */}
+                            <button
+                                onClick={() => setIsSidebarOpen(true)}
+                                className="bg-[#FACC15] text-black border border-black px-3 py-1 font-mono text-[10px] sm:text-xs text-right rounded-sm shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:-translate-x-[1px] hover:-translate-y-[1px] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:bg-[#FCD34D] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] cursor-pointer transition-all shrink-0"
+                                title="Click to view work history"
+                            >
+                                <span className="block text-[8px] uppercase tracking-widest opacity-60 font-bold mb-0.5 animate-pulse">Click to View</span>
+                                <div className="font-bold uppercase tracking-tight">3+ Years Exp</div>
+                                <div className="opacity-80">Remote | India</div>
+                            </button>
+                        </div>
+
                         {/* Summary / Biography */}
                         <div className="space-y-4 text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed font-sans mb-6 md:mb-0">
                             <p className="dropcap text-foreground font-medium">
@@ -77,23 +116,6 @@ export function Hero() {
                             </div>
                         </div>
 
-                        {/* Experience Specifications */}
-                        <div className="space-y-2 mb-6 md:mb-0">
-                            <span className="text-xs md:text-sm font-mono tracking-wider text-secondary font-bold block">// Experience & Details</span>
-                            <div className="space-y-2 font-mono text-xs sm:text-sm md:text-base max-w-md">
-                                <div className="flex justify-between border-b border-dashed border-neutral-300 pb-1">
-                                    <span className="text-muted-foreground">Experience:</span>
-                                    <span className="font-bold text-foreground">3+ Years</span>
-                                </div>
-                                <div className="flex justify-between border-b border-dashed border-neutral-300 pb-1">
-                                    <span className="text-muted-foreground">Location:</span>
-                                    <span className="font-bold text-foreground">Remote | India</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="h-px bg-neutral-800/10 hidden md:block" />
-
                         {/* Core Skills */}
                         <div className="space-y-3 mb-6 md:mb-0">
                             <span className="text-xs md:text-sm font-mono tracking-wider text-accent font-bold block">// Core Skills</span>
@@ -122,6 +144,71 @@ export function Hero() {
                     </div>
                 </motion.div>
             </div>
+
+            {/* Sidebar Drawer for Work History */}
+            <AnimatePresence>
+                {isSidebarOpen && (
+                    <>
+                        {/* Overlay backdrop */}
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 0.5 }}
+                            exit={{ opacity: 0 }}
+                            onClick={() => setIsSidebarOpen(false)}
+                            className="fixed inset-0 bg-black z-50 cursor-pointer"
+                        />
+                        {/* Sidebar Panel */}
+                        <motion.div
+                            initial={{ x: "100%" }}
+                            animate={{ x: 0 }}
+                            exit={{ x: "100%" }}
+                            transition={{ type: "spring", damping: 25, stiffness: 200 }}
+                            className="fixed top-0 right-0 h-full w-full max-w-md bg-background border-l border-border z-50 shadow-2xl flex flex-col font-sans"
+                        >
+                            {/* Header */}
+                            <div className="flex justify-between items-center px-6 py-5 border-b border-border">
+                                <span className="font-mono text-sm tracking-wider text-secondary font-bold">// Experience & Work History</span>
+                                <button
+                                    onClick={() => setIsSidebarOpen(false)}
+                                    className="p-1 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-full transition-colors text-muted-foreground hover:text-foreground"
+                                >
+                                    <X className="w-5 h-5" />
+                                </button>
+                            </div>
+
+                            {/* Content */}
+                            <div className="flex-1 overflow-y-auto px-6 py-6 space-y-8">
+                                {experiences.map((exp, index) => (
+                                    <div key={index} className="space-y-3 pb-8 border-b border-neutral-800/10 last:border-0 last:pb-0">
+                                        <div className="font-mono text-xs text-primary font-bold uppercase tracking-wider">
+                                            {exp.period}
+                                        </div>
+                                        <div className="space-y-1">
+                                            <h4 className="text-xl font-serif font-black text-foreground leading-tight">
+                                                {exp.role}
+                                            </h4>
+                                            <div className="flex justify-between items-center text-xs font-mono text-muted-foreground pt-1">
+                                                <span className="text-secondary font-bold uppercase tracking-wide">{exp.company}</span>
+                                                <span>{exp.location}</span>
+                                            </div>
+                                        </div>
+                                        <p className="text-sm text-muted-foreground leading-relaxed">
+                                            {exp.description}
+                                        </p>
+                                        <div className="flex flex-wrap gap-1 pt-1">
+                                            {exp.skills.map((skill) => (
+                                                <span key={skill} className="text-[10px] px-2 py-0.5 border border-neutral-300 text-muted-foreground uppercase tracking-tight font-mono">
+                                                    {skill}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </motion.div>
+                    </>
+                )}
+            </AnimatePresence>
         </section>
     );
 }
