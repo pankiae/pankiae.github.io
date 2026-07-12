@@ -17,17 +17,9 @@ const experiences = [
         role: "Gen AI Python Engineer",
         company: "Tricky WebSolutions Pvt. Ltd.",
         location: "Mohali, Punjab",
-        period: "Aug 2024 - Sept 2025",
-        description: "Deployed AI-agent workflows from scratch using Python function-calling patterns. Focused on lightweight dependencies and simplified debugging.",
-        skills: ["Python", "AI Agents", "Function Calling"]
-    },
-    {
-        role: "Research Intern",
-        company: "Tricky WebSolutions Pvt. Ltd.",
-        location: "Mohali, Punjab",
-        period: "May 2023 - July 2024",
-        description: "Gained exposure to Gen AI tools, RAG, and vector databases. Contributed to legacy projects and modular architecture improvements.",
-        skills: ["RAG", "Vector DB", "Gen AI"]
+        period: "May 2023 - Sept 2025",
+        description: "Deployed AI-agent workflows from scratch using Python function-calling patterns, focused on lightweight dependencies and simplified debugging. Built robust RAG pipelines, integrated vector databases, and contributed to modular backend architecture improvements.",
+        skills: ["Python", "AI Agents", "Function Calling", "RAG", "Vector DB", "Gen AI"]
     }
 ];
 
