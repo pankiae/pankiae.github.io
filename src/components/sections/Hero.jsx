@@ -76,7 +76,7 @@ export function Hero() {
                             {/* Highlighted Experience Badge (Clickable to open Sidebar) */}
                             <button
                                 onClick={() => setIsSidebarOpen(true)}
-                                className="bg-[#FACC15] text-black border border-black px-3 py-1 font-mono text-[10px] sm:text-xs text-right rounded-sm shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:-translate-x-[1px] hover:-translate-y-[1px] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:bg-[#FCD34D] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] cursor-pointer transition-all shrink-0"
+                                className="bg-[#FEF08A] text-black border border-black px-3 py-1 font-mono text-[10px] sm:text-xs text-right rounded-sm shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:-translate-x-[1px] hover:-translate-y-[1px] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:bg-[#FACC15] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] active:bg-[#CA8A04] cursor-pointer transition-all shrink-0"
                                 title="Click to view work history"
                             >
                                 <span className="block text-[8px] uppercase tracking-widest opacity-60 font-bold mb-0.5 animate-pulse">Click to View</span>
