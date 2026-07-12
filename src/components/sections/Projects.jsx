@@ -241,7 +241,13 @@ export function Projects() {
                         <span className="text-neutral-600 dark:text-neutral-400">{label}</span>
                         <span className="text-neutral-400"> : </span>
                         <span className="text-neutral-400">"</span>
-                        <span className="text-[#0ea5e9] dark:text-[#38bdf8] underline decoration-1 cursor-pointer font-bold">{url}</span>
+                        <a
+                            href={url}
+                            target="_blank"
+                            className="text-[#0ea5e9] dark:text-[#38bdf8] underline decoration-1 cursor-pointer font-bold pointer-events-auto relative z-30"
+                        >
+                            {url}
+                        </a>
                         <span className="text-neutral-400">"</span>
                     </span>
                 );
@@ -449,7 +455,7 @@ export function Projects() {
                                         {/* Layered Editor Panel */}
                                         <div className="flex-1 relative min-h-[440px]">
                                             {/* Bottom Layer: Highlighted Syntax Code */}
-                                            <div className="absolute inset-0 pointer-events-none select-none whitespace-pre-wrap break-words text-neutral-800 pr-4">
+                                            <div className="absolute inset-0 select-none whitespace-pre-wrap break-words text-neutral-800 pr-4 z-20 pointer-events-none">
                                                 {activeText.split("\n").map((line, idx) => (
                                                     <div key={idx} className="min-h-[20px] leading-5">
                                                         {renderStyledLine(line)}
@@ -466,7 +472,7 @@ export function Projects() {
                                                         [selectedProject.id]: e.target.value
                                                     });
                                                 }}
-                                                className="absolute inset-0 w-full h-full bg-transparent border-0 outline-none resize-none p-0 text-transparent caret-neutral-800 leading-5 whitespace-pre-wrap break-words focus:ring-0 focus:outline-none font-mono text-[11px] sm:text-xs overflow-y-hidden"
+                                                className="absolute inset-0 w-full h-full bg-transparent border-0 outline-none resize-none p-0 text-transparent caret-neutral-800 leading-5 whitespace-pre-wrap break-words focus:ring-0 focus:outline-none font-mono text-[11px] sm:text-xs overflow-y-hidden z-10"
                                                 spellCheck="false"
                                             />
                                         </div>
