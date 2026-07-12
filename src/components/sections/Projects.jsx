@@ -193,6 +193,22 @@ export function Projects() {
         }
     };
 
+    const handleCopy = (url) => {
+        navigator.clipboard.writeText(url);
+        setCopiedUrl(url);
+        setTimeout(() => setCopiedUrl(""), 1500);
+    };
+
+    const getLinkIcon = (url) => {
+        if (url.includes("github.com")) {
+            return <Github className="w-3.5 h-3.5 text-[#0ea5e9] dark:text-[#38bdf8] inline-block ml-1 shrink-0 align-middle" />;
+        }
+        if (url.includes("pypi.org")) {
+            return <Package className="w-3.5 h-3.5 text-[#0ea5e9] dark:text-[#38bdf8] inline-block ml-1 shrink-0 align-middle" />;
+        }
+        return <Globe className="w-3.5 h-3.5 text-[#0ea5e9] dark:text-[#38bdf8] inline-block ml-1 shrink-0 align-middle" />;
+    };
+
     const renderStyledLine = (line) => {
         if (line.startsWith("===")) {
             return <span className="text-neutral-300 dark:text-neutral-600 select-none">{line}</span>;
@@ -244,9 +260,10 @@ export function Projects() {
                         <a
                             href={url}
                             target="_blank"
-                            className="text-[#0ea5e9] dark:text-[#38bdf8] underline decoration-1 cursor-pointer font-bold pointer-events-auto relative z-30"
+                            className="text-[#0ea5e9] dark:text-[#38bdf8] underline decoration-1 cursor-pointer font-bold pointer-events-auto relative z-30 inline-flex items-center"
                         >
                             {url}
+                            {getLinkIcon(url)}
                         </a>
                         <span className="text-neutral-400">"</span>
                     </span>
@@ -386,52 +403,6 @@ export function Projects() {
                                 );
                             })}
                         </div>
-
-                        {/* Floating Quick Action Links */}
-                        {selectedProject && openTabs.length > 0 && (
-                            <div className="absolute top-14 right-6 z-10 flex flex-wrap gap-2 pointer-events-auto bg-white/80 backdrop-blur-xs p-1 rounded-md border border-neutral-200/80 shadow-xs">
-                                {selectedProject.links.demo && selectedProject.links.demo !== "#" && (
-                                    <a
-                                        href={selectedProject.links.demo}
-                                        target="_blank"
-                                        className="inline-flex items-center gap-1 px-2.5 py-1 border border-neutral-200 hover:border-primary text-[10px] font-sans font-bold text-neutral-600 hover:text-primary bg-white hover:bg-neutral-50 transition-all rounded shadow-xs"
-                                    >
-                                        <Globe className="w-3 h-3 text-secondary" />
-                                        <span>{selectedProject.links.demo.includes("pypi.org") ? "PyPI Package" : "Open Demo"}</span>
-                                    </a>
-                                )}
-                                {selectedProject.links.repo && selectedProject.links.repo !== "#" && (
-                                    <a
-                                        href={selectedProject.links.repo}
-                                        target="_blank"
-                                        className="inline-flex items-center gap-1 px-2.5 py-1 border border-neutral-200 hover:border-primary text-[10px] font-sans font-bold text-neutral-600 hover:text-primary bg-white hover:bg-neutral-50 transition-all rounded shadow-xs"
-                                    >
-                                        <Github className="w-3 h-3 text-neutral-600" />
-                                        <span>Source Code</span>
-                                    </a>
-                                )}
-                                {selectedProject.links.promptRepo && (
-                                    <a
-                                        href={selectedProject.links.promptRepo}
-                                        target="_blank"
-                                        className="inline-flex items-center gap-1 px-2.5 py-1 border border-neutral-200 hover:border-primary text-[10px] font-sans font-bold text-neutral-600 hover:text-primary bg-white hover:bg-neutral-50 transition-all rounded shadow-xs"
-                                    >
-                                        <Github className="w-3 h-3 text-neutral-600" />
-                                        <span>Prompt Detect</span>
-                                    </a>
-                                )}
-                                {selectedProject.links.sam2Repo && (
-                                    <a
-                                        href={selectedProject.links.sam2Repo}
-                                        target="_blank"
-                                        className="inline-flex items-center gap-1 px-2.5 py-1 border border-neutral-200 hover:border-primary text-[10px] font-sans font-bold text-neutral-600 hover:text-primary bg-white hover:bg-neutral-50 transition-all rounded shadow-xs"
-                                    >
-                                        <Github className="w-3 h-3 text-neutral-600" />
-                                        <span>SAM2 Segment</span>
-                                    </a>
-                                )}
-                            </div>
-                        )}
 
                         {/* Code Workspace */}
                         <div className="flex-1 p-4 md:p-6 font-mono text-sm leading-relaxed bg-white overflow-x-hidden">
