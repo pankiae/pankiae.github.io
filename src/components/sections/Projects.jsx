@@ -313,22 +313,22 @@ export function Projects() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-50px" }}
                     transition={{ duration: 0.8 }}
-                    className="w-full bg-white text-neutral-800 border border-neutral-200 rounded-lg shadow-xl flex flex-col md:flex-row h-auto"
+                    className="w-full bg-white text-neutral-800 border border-neutral-200 rounded-lg shadow-xl flex flex-col md:flex-row h-[600px] md:h-[550px] lg:h-[600px] overflow-hidden"
                 >
                     {/* Sidebar / File Explorer */}
                     <div className="w-full md:w-64 bg-neutral-50/90 border-b md:border-b-0 md:border-r border-neutral-200 flex flex-col shrink-0">
                         {/* Tab header */}
                         <div className="px-4 py-3 border-b border-neutral-200 flex items-center justify-center">
-                            <span className="text-xs md:text-sm font-mono font-black uppercase tracking-wider bg-[#007aff] text-white border-2 border-black px-3.5 py-1 shadow-[3px_3px_0px_rgba(0,0,0,1)] select-none shrink-0">
+                            <span className="text-sm md:text-base font-roboto font-black uppercase tracking-wider bg-[#007aff] text-white border-2 border-black px-3.5 py-1 shadow-[3px_3px_0px_rgba(0,0,0,1)] select-none shrink-0">
                                 PROJECTS_EXPLORER
                             </span>
                         </div>
 
                         {/* File Tree */}
-                        <div className="flex-1 p-3 space-y-4">
+                        <div className="flex-1 p-3 space-y-4 overflow-y-auto scrollbar-none">
                             {/* Categories */}
                             <div>
-                                <div className="flex items-center gap-1 px-2 py-1 text-xs font-bold font-mono text-neutral-400 select-none uppercase tracking-wider">
+                                <div className="flex items-center gap-1 px-2 py-1 text-xs md:text-sm font-bold font-mono text-neutral-400 select-none uppercase tracking-wider">
                                     <Folder className="w-3.5 h-3.5 text-secondary" />
                                     Projects Index
                                 </div>
@@ -339,14 +339,14 @@ export function Projects() {
                                             <button
                                                 key={p.id}
                                                 onClick={() => handleFileSelect(p)}
-                                                className={`w-full flex items-center justify-between px-3 py-2 rounded font-mono text-xs text-left transition-colors ${
+                                                className={`w-full flex items-center justify-between px-3 py-2 rounded font-mono text-xs md:text-sm text-left transition-colors ${
                                                     isSelected
                                                         ? "bg-neutral-200/60 text-secondary font-black border-l-2 border-primary"
-                                                        : "hover:bg-neutral-200/30 text-neutral-600"
+                                                        : "hover:bg-neutral-200/30 text-neutral-700 font-bold"
                                                 }`}
                                             >
                                                 <div className="flex items-center gap-2 overflow-hidden truncate">
-                                                    <FileCode className={`w-4 h-4 shrink-0 ${isSelected ? "text-primary" : "text-neutral-400"}`} />
+                                                    <FileCode className={`w-4 h-4 shrink-0 ${isSelected ? "text-primary" : "text-neutral-500"}`} />
                                                     <span className="truncate">{p.fileName}</span>
                                                 </div>
                                             </button>
@@ -358,7 +358,7 @@ export function Projects() {
                     </div>
 
                     {/* Editor Panel */}
-                    <div className="flex-1 flex flex-col bg-white relative">
+                    <div className="flex-1 flex flex-col bg-white relative overflow-hidden">
                         {/* Editor Tab Headers */}
                         <div className="bg-neutral-50/90 px-2 py-1.5 border-b border-neutral-200 flex items-center overflow-x-auto select-none shrink-0 scrollbar-none gap-1">
                             {openTabs.map((tab) => {
@@ -385,7 +385,7 @@ export function Projects() {
                         </div>
 
                         {/* Code Workspace */}
-                        <div className="flex-1 p-4 md:p-6 font-mono bg-white overflow-x-hidden">
+                        <div className="flex-1 p-4 md:p-6 font-mono bg-white overflow-x-hidden overflow-y-auto scrollbar-thin">
                             <AnimatePresence mode="wait">
                                 {selectedProject && openTabs.length > 0 ? (
                                     <motion.div
