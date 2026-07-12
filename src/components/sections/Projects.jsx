@@ -50,17 +50,20 @@ const projects = [
         links: { demo: "https://invisioned.io/", repo: "#" }
     },
     {
-        title: "Image Seg AI",
-        category: "Independent Labs",
-        type: "Computer Vision Tool",
+        title: "Prompt & Click Object Segmenter",
+        category: "Open Source",
+        type: "Forward Deployed Engineering Work",
         iconName: "Eye",
-        description: "Leveraging Meta's SAM2 for zero-shot object segmentation. Integrated OpenAI GPT-image-1 for AI-powered inpainting.",
+        description: "A suite of custom computer vision tools designed to detect, extract, and mark objects in images using either text prompts or interactive user point-clicks.",
         highlights: [
-            "SAM2 Segmenting: zero-shot object detection and segmentation on high-resolution images.",
-            "AI Inpainting: integrates OpenAI models for realistic image reconstruction and context-aware styling."
+            "FastAPI SAM2 integration: serves Meta's Segment Anything 2 model to extract objects dynamically from clicked coordinates or bounding boxes.",
+            "Text-Prompt Detection: built real-time object detection models to locate and crop objects based on descriptive text queries."
         ],
-        tags: ["Python", "PyTorch", "FastAPI", "SAM2"],
-        links: { demo: "#", repo: "#" }
+        tags: ["Python", "FastAPI", "SAM2", "PyTorch", "Computer Vision", "Object Detection"],
+        links: {
+            promptRepo: "https://github.com/pankiae/ObjectDetectionOnPromptInImage",
+            sam2Repo: "https://github.com/pankiae/ImageSegmentSAM2_FastAPI_BoundingBoxes"
+        }
     },
 ];
 
@@ -124,77 +127,96 @@ export function Projects() {
                                 </p>
                             </div>
 
-                            <div className="space-y-12 md:space-y-16">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 {catProjects.map((project, index) => {
-                                    const ProjectIcon = iconMap[project.iconName] || Globe;
                                     return (
                                         <motion.div
                                             key={index}
-                                            initial={{ opacity: 0, y: 40 }}
+                                            initial={{ opacity: 0, y: 30 }}
                                             whileInView={{ opacity: 1, y: 0 }}
-                                            viewport={{ once: true, margin: "-100px" }}
-                                            transition={{ duration: 0.7, ease: "easeOut" }}
-                                            className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start"
+                                            viewport={{ once: true, margin: "-50px" }}
+                                            transition={{ duration: 0.6, ease: "easeOut" }}
+                                            className="bg-card text-card-foreground border border-black p-6 rounded-sm shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:-translate-x-[1px] hover:-translate-y-[1px] hover:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 flex flex-col justify-between h-full group"
                                         >
-                                            {/* Left Column: Metadata & Links */}
-                                            <div className="lg:col-span-4 space-y-4 font-mono">
-                                                <div className="flex items-center">
-                                                    <div className="flex items-center gap-1.5 text-xs text-muted-foreground font-semibold bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 px-2 py-0.5 rounded-sm">
-                                                        <ProjectIcon className="w-3.5 h-3.5 text-secondary" />
-                                                        <span>{project.type}</span>
-                                                    </div>
+                                            <div>
+                                                {/* Dossier Header */}
+                                                <div className="flex justify-between items-center border-b border-dashed border-neutral-300 dark:border-neutral-800 pb-3 mb-4 font-mono text-[10px] sm:text-xs">
+                                                    <span className="text-secondary font-bold uppercase tracking-wider">// DOSSIER NO. 0{index + 1}</span>
+                                                    <span className="text-muted-foreground uppercase tracking-tight">{project.type}</span>
                                                 </div>
-                                                <div className="border-t border-neutral-800/10 pt-4 space-y-2">
-                                                    <span className="text-[10px] md:text-xs text-muted-foreground tracking-wider block font-bold">Technologies</span>
-                                                    <div className="flex flex-wrap gap-1.5">
-                                                        {project.tags.map((tag) => (
-                                                            <span key={tag} className="text-sm md:text-base px-2.5 py-1 border border-neutral-300 text-foreground font-semibold tracking-tight">
-                                                                {tag}
-                                                            </span>
-                                                        ))}
-                                                    </div>
-                                                </div>
-                                                {((project.links.demo && project.links.demo !== "#") || (project.links.repo && project.links.repo !== "#")) && (
-                                                    <div className="border-t border-neutral-800/10 pt-4 space-y-3">
-                                                        <span className="text-[10px] md:text-xs text-muted-foreground tracking-wider block font-bold">Links</span>
-                                                        <div className="flex flex-col sm:flex-row lg:flex-col gap-2">
-                                                            {project.links.demo && project.links.demo !== "#" && (
-                                                                <Button size="sm" variant="default" className="justify-start text-xs md:text-sm font-semibold" asChild>
-                                                                    <Link href={project.links.demo} target="_blank">
-                                                                        {project.links.demo.includes("pypi.org") ? "PyPI Package" : "Live Demo"}
-                                                                    </Link>
-                                                                </Button>
-                                                            )}
-                                                            {project.links.repo && project.links.repo !== "#" && (
-                                                                <Button size="sm" variant="outline" className="justify-start text-xs md:text-sm font-semibold" asChild>
-                                                                    <Link href={project.links.repo} target="_blank">
-                                                                        Source Code
-                                                                    </Link>
-                                                                </Button>
-                                                            )}
-                                                        </div>
-                                                    </div>
-                                                )}
-                                            </div>
 
-                                            {/* Right Column: Title & Text Description */}
-                                            <div className="lg:col-span-8 space-y-4">
-                                                <h3 className="text-3xl lg:text-4xl font-serif font-black tracking-tight text-foreground">
+                                                {/* Title */}
+                                                <h4 className="text-2xl sm:text-3xl font-serif font-black tracking-tight mb-2 group-hover:text-primary transition-colors leading-none text-foreground">
                                                     {project.title}
-                                                </h3>
-                                                <div className="h-0.5 bg-neutral-800/20" />
-                                                <p className="text-base md:text-lg text-muted-foreground leading-relaxed font-sans">
+                                                </h4>
+
+                                                {/* Description */}
+                                                <p className="text-sm sm:text-base text-muted-foreground leading-relaxed font-sans mb-4">
                                                     {project.description}
                                                 </p>
+
+                                                {/* Highlights */}
                                                 {project.highlights && (
-                                                    <ul className="list-disc pl-5 space-y-1.5 text-sm md:text-base text-muted-foreground font-sans">
-                                                        {project.highlights.map((highlight, idx) => (
-                                                            <li key={idx} className="leading-relaxed">
-                                                                {highlight}
+                                                    <ul className="space-y-1.5 mb-6 text-xs sm:text-sm text-muted-foreground font-sans list-none border-l-2 border-neutral-300 dark:border-neutral-700 pl-3">
+                                                        {project.highlights.slice(0, 2).map((highlight, idx) => (
+                                                            <li key={idx} className="relative leading-relaxed">
+                                                                • {highlight}
                                                             </li>
                                                         ))}
                                                     </ul>
                                                 )}
+                                            </div>
+
+                                            {/* Footer: Tags and Action Links */}
+                                            <div className="space-y-4 pt-4 border-t border-dashed border-neutral-300 dark:border-neutral-800 mt-auto">
+                                                <div className="flex flex-wrap gap-1.5">
+                                                    {project.tags.map((tag) => (
+                                                        <span key={tag} className="text-[10px] font-mono px-2 py-0.5 border border-neutral-300 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 text-foreground font-semibold">
+                                                            {tag}
+                                                        </span>
+                                                    ))}
+                                                </div>
+
+                                                <div className="flex gap-3 pt-2">
+                                                    {project.links.demo && project.links.demo !== "#" && (
+                                                        <a
+                                                            href={project.links.demo}
+                                                            target="_blank"
+                                                            className="flex-1 text-center py-2 border border-black font-mono text-xs font-bold uppercase tracking-wider bg-[#FEF08A] hover:bg-[#FACC15] active:bg-[#CA8A04] shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:-translate-x-[1px] hover:-translate-y-[1px] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] transition-all cursor-pointer text-black"
+                                                        >
+                                                            {project.links.demo.includes("pypi.org") ? "PyPI Package" : "Live Demo"}
+                                                        </a>
+                                                    )}
+                                                    {project.links.repo && project.links.repo !== "#" && (
+                                                        <a
+                                                            href={project.links.repo}
+                                                            target="_blank"
+                                                            className="flex-1 text-center py-2 border border-black font-mono text-xs font-bold uppercase tracking-wider bg-[#FCA5A5] hover:bg-[#F87171] active:bg-[#CA8A04] shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:-translate-x-[1px] hover:-translate-y-[1px] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] transition-all cursor-pointer text-black"
+                                                        >
+                                                            Source Code
+                                                        </a>
+                                                    )}
+                                                    {project.links.promptRepo && (
+                                                        <a
+                                                            href={project.links.promptRepo}
+                                                            target="_blank"
+                                                            className="flex-1 text-center py-2 border border-black font-mono text-[10px] sm:text-xs font-bold uppercase tracking-wider bg-[#FCA5A5] hover:bg-[#F87171] active:bg-[#CA8A04] shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:-translate-x-[1px] hover:-translate-y-[1px] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] transition-all cursor-pointer text-black"
+                                                            title="Object Detection on Prompt Repo"
+                                                        >
+                                                            Prompt Detect
+                                                        </a>
+                                                    )}
+                                                    {project.links.sam2Repo && (
+                                                        <a
+                                                            href={project.links.sam2Repo}
+                                                            target="_blank"
+                                                            className="flex-1 text-center py-2 border border-black font-mono text-[10px] sm:text-xs font-bold uppercase tracking-wider bg-[#FCA5A5] hover:bg-[#F87171] active:bg-[#CA8A04] shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:-translate-x-[1px] hover:-translate-y-[1px] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] transition-all cursor-pointer text-black"
+                                                            title="SAM2 FastAPI Segmentation Repo"
+                                                        >
+                                                            SAM2 Segment
+                                                        </a>
+                                                    )}
+                                                </div>
                                             </div>
                                         </motion.div>
                                     );
