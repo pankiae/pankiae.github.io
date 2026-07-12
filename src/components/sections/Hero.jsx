@@ -28,7 +28,7 @@ export function Hero() {
                             <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-black tracking-tight leading-none text-foreground uppercase">
                                 Pankaj Jarial
                             </h1>
-                            <span className="text-muted-foreground font-sans font-light text-xl sm:text-2xl md:text-3xl tracking-normal block lowercase italic">
+                            <span className="text-muted-foreground font-sans font-light text-xl sm:text-2xl md:text-3xl tracking-normal block italic">
                                 AI Software Engineer
                             </span>
                         </div>
