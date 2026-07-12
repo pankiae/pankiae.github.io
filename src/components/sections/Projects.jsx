@@ -8,25 +8,45 @@ import Link from "next/link";
 const projects = [
     {
         title: "django-rest-pgtenants",
-        description: "A Python/Django package published on PyPI providing schema-based multi-tenancy for Django REST Framework. Utilizes PostgreSQL schemas for complete tenant isolation with middleware-driven request routing and dynamic tenant migration support.",
+        description: "A lightweight, zero-monkeypatching multi-tenancy package published on PyPI for Django REST Framework (DRF) implementing database-level PostgreSQL schema isolation.",
+        highlights: [
+            "Zero monkeypatching: relies strictly on Django's official database routing and middleware APIs.",
+            "Thread & async-safe: uses Python contextvars to eliminate data-leak risks across concurrent async tasks and Celery workers.",
+            "Pluggable routing: supports JWT/OIDC token claims, subdomains, and custom HTTP header matching.",
+            "Connection pool safety: auto-resets the PostgreSQL search_path to prevent leaks when reusing connections in PgBouncer."
+        ],
         tags: ["Python", "Django", "DRF", "PostgreSQL", "PyPI", "Middleware"],
         links: { demo: "https://pypi.org/project/django-rest-pgtenants/", repo: "https://github.com/pankiae/django-rest-pgtenants" }
     },
     {
         title: "Curico",
-        description: "Multi-Model Agentic workflow generating steps for activity, Q&A, and images. Features Whisper + TTS voice tutor and Celery+Redis pipeline for off-loading tasks.",
+        description: "Multi-Model Agentic learning workflow generating steps for activity, Q&A, and images. Features Whisper + TTS voice tutor and Celery+Redis pipeline for off-loading tasks.",
+        highlights: [
+            "Agentic Workflows: orchestrates multi-step pipelines for activity generation, Q&A, and asset creation.",
+            "Voice Tutor Integration: incorporates Whisper speech-to-text and Text-to-Speech (TTS) for natural voice interactions.",
+            "Backend Pipeline: handles heavy task off-loading using a robust Celery and Redis message broker architecture."
+        ],
         tags: ["Python", "Celery", "Redis", "Whisper", "TTS"],
         links: { demo: "https://play.curico.ai", repo: "#" }
     },
     {
         title: "Invisioned",
         description: "Integrated multiple LLMs (OpenAI, Stability AI, Claude) and CV models (GroundingDINO, SAM2). Cost-effective solution serving 6,000+ users.",
+        highlights: [
+            "Multimodal integration: combines OpenAI, Claude, and Stability AI with Segment Anything 2 and GroundingDINO.",
+            "Production scale: cost-effective serverless backend architecture serving 6,000+ active users.",
+            "Optimized inference: custom model pipelines reducing latency and GPU consumption."
+        ],
         tags: ["LLMs", "Computer Vision", "SAM2", "GroundingDINO"],
         links: { demo: "https://invisioned.io/", repo: "#" }
     },
     {
         title: "Image Seg AI",
         description: "Leveraging Meta's SAM2 for zero-shot object segmentation. Integrated OpenAI GPT-image-1 for AI-powered inpainting.",
+        highlights: [
+            "SAM2 Segmenting: zero-shot object detection and segmentation on high-resolution images.",
+            "AI Inpainting: integrates OpenAI models for realistic image reconstruction and context-aware styling."
+        ],
         tags: ["Python", "PyTorch", "FastAPI", "SAM2"],
         links: { demo: "#", repo: "#" }
     },
@@ -108,6 +128,15 @@ export function Projects() {
                             <p className="text-base text-muted-foreground leading-relaxed font-sans">
                                 {project.description}
                             </p>
+                            {project.highlights && (
+                                <ul className="list-disc pl-5 space-y-1.5 text-sm text-muted-foreground font-sans">
+                                    {project.highlights.map((highlight, idx) => (
+                                        <li key={idx} className="leading-relaxed">
+                                            {highlight}
+                                        </li>
+                                    ))}
+                                </ul>
+                            )}
                         </div>
                     </motion.div>
                 ))}
