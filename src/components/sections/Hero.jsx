@@ -13,7 +13,7 @@ const skills = [
 
 export function Hero() {
     return (
-        <section id="home" className="pt-8 pb-12 md:pt-12 md:pb-16 relative overflow-hidden bg-background">
+        <section id="home" className="min-h-screen min-h-dvh flex items-center pt-8 pb-12 md:py-16 relative overflow-hidden bg-background">
             <div className="container mx-auto px-6 max-w-6xl">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
