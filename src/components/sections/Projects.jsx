@@ -319,7 +319,7 @@ export function Projects() {
                     <div className="w-full md:w-64 bg-neutral-50/90 border-b md:border-b-0 md:border-r border-neutral-200 flex flex-col shrink-0">
                         {/* Tab header */}
                         <div className="px-4 py-3 border-b border-neutral-200 flex items-center justify-center">
-                            <span className="text-sm md:text-base font-roboto font-black uppercase tracking-wider bg-[#007aff] text-white border-2 border-black px-3.5 py-1 shadow-[3px_3px_0px_rgba(0,0,0,1)] select-none shrink-0">
+                            <span className="text-sm md:text-base font-sans font-black uppercase tracking-wider bg-[#007aff] text-white border-2 border-black px-3.5 py-1 shadow-[3px_3px_0px_rgba(0,0,0,1)] select-none shrink-0">
                                 PROJECTS_EXPLORER
                             </span>
                         </div>
@@ -406,7 +406,7 @@ export function Projects() {
                                         {/* Layered Editor Panel */}
                                         <div className="flex-1 relative min-h-[440px]">
                                             {/* Bottom Layer: Highlighted Syntax Code */}
-                                            <div className="absolute inset-0 select-none whitespace-pre-wrap break-words text-neutral-800 pr-4 z-20 pointer-events-none font-medium md:font-semibold">
+                                            <div className="absolute inset-0 select-none whitespace-pre-wrap break-words text-neutral-800 pr-4 z-20 pointer-events-none font-normal">
                                                 {activeText.split("\n").map((line, idx) => (
                                                     <div key={idx} className="min-h-[20px] md:min-h-[24px] lg:min-h-[28px] leading-5 md:leading-6 lg:leading-7">
                                                         {renderStyledLine(line)}
@@ -423,7 +423,7 @@ export function Projects() {
                                                         [selectedProject.id]: e.target.value
                                                     });
                                                 }}
-                                                className="absolute inset-0 w-full h-full bg-transparent border-0 outline-none resize-none p-0 text-transparent caret-neutral-800 leading-5 md:leading-6 lg:leading-7 whitespace-pre-wrap break-words focus:ring-0 focus:outline-none font-mono font-medium md:font-semibold overflow-y-hidden z-10"
+                                                className="absolute inset-0 w-full h-full bg-transparent border-0 outline-none resize-none p-0 text-transparent caret-neutral-800 leading-5 md:leading-6 lg:leading-7 whitespace-pre-wrap break-words focus:ring-0 focus:outline-none font-mono font-normal overflow-y-hidden z-10"
                                                 spellCheck="false"
                                             />
                                         </div>

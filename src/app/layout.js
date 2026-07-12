@@ -1,4 +1,4 @@
-import { Geist, Geist_Mono, Lora, Roboto } from "next/font/google";
+import { Geist, Geist_Mono, Lora, Outfit } from "next/font/google";
 import "./globals.css";
 import { Footer } from "@/components/layout/Footer";
 
@@ -18,10 +18,9 @@ const lora = Lora({
   weight: ["400", "500", "600", "700"],
 });
 
-const roboto = Roboto({
-  variable: "--font-roboto",
+const outfit = Outfit({
+  variable: "--font-outfit",
   subsets: ["latin"],
-  weight: ["400", "500", "700", "900"],
 });
 
 export const metadata = {
@@ -33,7 +32,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className="scroll-smooth">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${lora.variable} ${roboto.variable} antialiased bg-background text-foreground min-h-screen flex flex-col`}
+        className={`${geistSans.variable} ${geistMono.variable} ${lora.variable} ${outfit.variable} antialiased bg-background text-foreground min-h-screen flex flex-col`}
       >
         <main className="flex-grow">
           {children}
