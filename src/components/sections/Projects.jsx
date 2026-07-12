@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ExternalLink, Github, Package, Globe, Cpu, Eye, FileCode, Folder, Terminal, ArrowRight } from "lucide-react";
+import { ExternalLink, Github, Package, Globe, Cpu, Eye, FileCode, Folder, Terminal, ArrowRight, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
@@ -84,7 +84,27 @@ const iconMap = {
 };
 
 export function Projects() {
-    const [selectedProject, setSelectedProject] = useState(projects[0]);
+    const [openTabs, setOpenTabs] = useState([projects[0]]);
+    const [activeTabId, setActiveTabId] = useState(projects[0].id);
+
+    const handleFileSelect = (project) => {
+        if (!openTabs.find((tab) => tab.id === project.id)) {
+            setOpenTabs([...openTabs, project]);
+        }
+        setActiveTabId(project.id);
+    };
+
+    const handleCloseTab = (tabId, e) => {
+        e.stopPropagation();
+        const updatedTabs = openTabs.filter((tab) => tab.id !== tabId);
+        setOpenTabs(updatedTabs);
+
+        if (activeTabId === tabId && updatedTabs.length > 0) {
+            setActiveTabId(updatedTabs[updatedTabs.length - 1].id);
+        }
+    };
+
+    const selectedProject = projects.find((p) => p.id === activeTabId);
 
     return (
         <section id="projects" className="py-20 bg-background border-t border-neutral-200 dark:border-neutral-800">
@@ -112,7 +132,7 @@ export function Projects() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-50px" }}
                     transition={{ duration: 0.8 }}
-                    className="w-full bg-white text-neutral-800 border border-neutral-200 rounded-lg overflow-hidden shadow-xl flex flex-col md:flex-row h-[680px] md:h-[620px]"
+                    className="w-full bg-white text-neutral-800 border border-neutral-200 rounded-lg shadow-xl flex flex-col md:flex-row h-[680px] md:h-[620px]"
                 >
                     {/* Sidebar / File Explorer */}
                     <div className="w-full md:w-64 bg-neutral-50/90 border-b md:border-b-0 md:border-r border-neutral-200 flex flex-col shrink-0">
@@ -136,11 +156,11 @@ export function Projects() {
                                 </div>
                                 <div className="mt-1 space-y-0.5">
                                     {projects.map((p) => {
-                                        const isSelected = selectedProject.id === p.id;
+                                        const isSelected = selectedProject && selectedProject.id === p.id;
                                         return (
                                             <button
                                                 key={p.id}
-                                                onClick={() => setSelectedProject(p)}
+                                                onClick={() => handleFileSelect(p)}
                                                 className={`w-full flex items-center justify-between px-3 py-2 rounded font-mono text-xs text-left transition-colors ${
                                                     isSelected
                                                         ? "bg-neutral-200/60 text-secondary font-black border-l-2 border-primary"
@@ -162,119 +182,154 @@ export function Projects() {
                     {/* Editor Panel */}
                     <div className="flex-1 flex flex-col bg-white overflow-hidden">
                         {/* Editor Tab Headers */}
-                        <div className="bg-neutral-50/90 px-4 py-2 border-b border-neutral-200 flex items-center overflow-x-auto select-none shrink-0 scrollbar-none">
-                            <div className="flex items-center gap-2 px-3 py-1 bg-white border-t-2 border-primary rounded-t border-r border-l border-neutral-200 text-xs font-mono font-bold text-foreground">
-                                <FileCode className="w-3.5 h-3.5 text-primary" />
-                                {selectedProject.fileName}
-                            </div>
+                        <div className="bg-neutral-50/90 px-2 py-1.5 border-b border-neutral-200 flex items-center overflow-x-auto select-none shrink-0 scrollbar-none gap-1">
+                            {openTabs.map((tab) => {
+                                const isActive = activeTabId === tab.id;
+                                return (
+                                    <div
+                                        key={tab.id}
+                                        onClick={() => setActiveTabId(tab.id)}
+                                        className={`flex items-center gap-2 px-3 py-1 cursor-pointer rounded-t border-t-2 text-xs font-mono transition-all ${
+                                            isActive
+                                                ? "bg-white border-primary border-r border-l border-neutral-200 text-foreground font-bold"
+                                                : "bg-neutral-100 border-transparent text-neutral-500 hover:bg-neutral-200/50"
+                                        }`}
+                                    >
+                                        <FileCode className={`w-3.5 h-3.5 ${isActive ? "text-primary" : "text-neutral-400"}`} />
+                                        <span>{tab.fileName}</span>
+                                        <X
+                                            className="w-3 h-3 hover:bg-neutral-300 rounded-full p-0.5 transition-colors"
+                                            onClick={(e) => handleCloseTab(tab.id, e)}
+                                        />
+                                    </div>
+                                );
+                            })}
                         </div>
 
                         {/* Code Workspace */}
                         <div className="flex-1 overflow-y-auto p-6 md:p-8 font-mono text-sm leading-relaxed scrollbar-thin">
                             <AnimatePresence mode="wait">
-                                <motion.div
-                                    key={selectedProject.id}
-                                    initial={{ opacity: 0, x: 10 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    exit={{ opacity: 0, x: -10 }}
-                                    transition={{ duration: 0.3 }}
-                                    className="space-y-6"
-                                >
-                                    {/* Console Header */}
-                                    <div className="flex flex-wrap items-center justify-between gap-4 border-b border-neutral-200 pb-4">
-                                        <div className="space-y-1">
-                                            <div className="text-xs text-neutral-400">// {selectedProject.category}</div>
-                                            <h3 className="text-2xl md:text-3xl font-serif font-black text-foreground">
-                                                {selectedProject.title}
-                                            </h3>
+                                {selectedProject && openTabs.length > 0 ? (
+                                    <motion.div
+                                        key={selectedProject.id}
+                                        initial={{ opacity: 0, x: 10 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        exit={{ opacity: 0, x: -10 }}
+                                        transition={{ duration: 0.3 }}
+                                        className="space-y-6"
+                                    >
+                                        {/* Console Header */}
+                                        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-neutral-200 pb-4">
+                                            <div className="space-y-1">
+                                                <div className="text-xs text-neutral-400">// {selectedProject.category}</div>
+                                                <h3 className="text-2xl md:text-3xl font-serif font-black text-foreground">
+                                                    {selectedProject.title}
+                                                </h3>
+                                            </div>
+                                            <span className="text-[10px] sm:text-xs font-semibold px-2.5 py-1 rounded bg-neutral-100 text-secondary border border-neutral-200">
+                                                {selectedProject.type}
+                                            </span>
                                         </div>
-                                        <span className="text-[10px] sm:text-xs font-semibold px-2.5 py-1 rounded bg-neutral-100 text-secondary border border-neutral-200">
-                                            {selectedProject.type}
-                                        </span>
-                                    </div>
 
-                                    {/* Description */}
-                                    <div className="space-y-2">
-                                        <div className="text-xs text-neutral-400">// Project Overview</div>
-                                        <p className="text-neutral-600 font-sans leading-relaxed text-sm md:text-base">
-                                            {selectedProject.description}
-                                        </p>
-                                    </div>
+                                        {/* Description */}
+                                        <div className="space-y-2">
+                                            <div className="text-xs text-neutral-400">// Project Overview</div>
+                                            <p className="text-neutral-600 font-sans leading-relaxed text-sm md:text-base">
+                                                {selectedProject.description}
+                                            </p>
+                                        </div>
 
-                                    {/* Technical Specs */}
-                                    <div className="space-y-3">
-                                        <div className="text-xs text-neutral-400">// Technical Highlights & Implementations</div>
-                                        <div className="bg-neutral-50/60 border border-neutral-200/80 rounded-md p-4 space-y-3 font-sans text-xs md:text-sm text-neutral-600">
-                                            {selectedProject.highlights.map((highlight, idx) => {
-                                                const [label, desc] = highlight.split(": ");
-                                                return (
-                                                    <div key={idx} className="flex gap-2">
-                                                        <span className="text-primary font-mono shrink-0 font-bold">▶</span>
-                                                        <div>
-                                                            <strong className="text-neutral-800 font-semibold">{label}:</strong> {desc}
+                                        {/* Technical Specs */}
+                                        <div className="space-y-3">
+                                            <div className="text-xs text-neutral-400">// Technical Highlights & Implementations</div>
+                                            <div className="bg-neutral-50/60 border border-neutral-200/80 rounded-md p-4 space-y-3 font-sans text-xs md:text-sm text-neutral-600">
+                                                {selectedProject.highlights.map((highlight, idx) => {
+                                                    const [label, desc] = highlight.split(": ");
+                                                    return (
+                                                        <div key={idx} className="flex gap-2">
+                                                            <span className="text-primary font-mono shrink-0 font-bold">▶</span>
+                                                            <div>
+                                                                <strong className="text-neutral-800 font-semibold">{label}:</strong> {desc}
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                );
-                                            })}
+                                                    );
+                                                })}
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    {/* Tech Stack */}
-                                    <div className="space-y-2">
-                                        <div className="text-xs text-neutral-400">// Technologies Used</div>
-                                        <div className="flex flex-wrap gap-1.5">
-                                            {selectedProject.tags.map((tag) => (
-                                                <span key={tag} className="text-[10px] font-mono px-2 py-0.5 border border-neutral-200 bg-neutral-50 text-neutral-500 rounded-sm">
-                                                    {tag}
-                                                </span>
-                                            ))}
+                                        {/* Tech Stack */}
+                                        <div className="space-y-2">
+                                            <div className="text-xs text-neutral-400">// Technologies Used</div>
+                                            <div className="flex flex-wrap gap-1.5">
+                                                {selectedProject.tags.map((tag) => (
+                                                    <span key={tag} className="text-[10px] font-mono px-2 py-0.5 border border-neutral-200 bg-neutral-50 text-neutral-500 rounded-sm">
+                                                        {tag}
+                                                    </span>
+                                                ))}
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    {/* Action Links */}
-                                    <div className="pt-4 border-t border-neutral-200 flex flex-wrap gap-3">
-                                        {selectedProject.links.demo && selectedProject.links.demo !== "#" && (
-                                            <a
-                                                href={selectedProject.links.demo}
-                                                target="_blank"
-                                                className="inline-flex items-center gap-2 px-4 py-2 border border-neutral-200 hover:border-primary text-xs font-bold text-neutral-700 hover:text-primary bg-white hover:bg-neutral-50 transition-all rounded shadow-sm"
-                                            >
-                                                <Globe className="w-3.5 h-3.5" />
-                                                {selectedProject.links.demo.includes("pypi.org") ? "PyPI Package" : "Live Demo"}
-                                            </a>
-                                        )}
-                                        {selectedProject.links.repo && selectedProject.links.repo !== "#" && (
-                                            <a
-                                                href={selectedProject.links.repo}
-                                                target="_blank"
-                                                className="inline-flex items-center gap-2 px-4 py-2 border border-neutral-200 hover:border-primary text-xs font-bold text-neutral-700 hover:text-primary bg-white hover:bg-neutral-50 transition-all rounded shadow-sm"
-                                            >
-                                                <Github className="w-3.5 h-3.5" />
-                                                Source Code
-                                            </a>
-                                        )}
-                                        {selectedProject.links.promptRepo && (
-                                            <a
-                                                href={selectedProject.links.promptRepo}
-                                                target="_blank"
-                                                className="inline-flex items-center gap-2 px-4 py-2 border border-neutral-200 hover:border-primary text-xs font-bold text-neutral-700 hover:text-primary bg-white hover:bg-neutral-50 transition-all rounded shadow-sm"
-                                            >
-                                                <Github className="w-3.5 h-3.5" />
-                                                Prompt Detect Repo
-                                            </a>
-                                        )}
-                                        {selectedProject.links.sam2Repo && (
-                                            <a
-                                                href={selectedProject.links.sam2Repo}
-                                                target="_blank"
-                                                className="inline-flex items-center gap-2 px-4 py-2 border border-neutral-200 hover:border-primary text-xs font-bold text-neutral-700 hover:text-primary bg-white hover:bg-neutral-50 transition-all rounded shadow-sm"
-                                            >
-                                                <Github className="w-3.5 h-3.5" />
-                                                SAM2 Segment Repo
-                                            </a>
-                                        )}
-                                    </div>
-                                </motion.div>
+                                        {/* Action Links */}
+                                        <div className="pt-4 border-t border-neutral-200 flex flex-wrap gap-3">
+                                            {selectedProject.links.demo && selectedProject.links.demo !== "#" && (
+                                                <a
+                                                    href={selectedProject.links.demo}
+                                                    target="_blank"
+                                                    className="inline-flex items-center gap-2 px-4 py-2 border border-neutral-200 hover:border-primary text-xs font-bold text-neutral-700 hover:text-primary bg-white hover:bg-neutral-50 transition-all rounded shadow-sm"
+                                                >
+                                                    <Globe className="w-3.5 h-3.5" />
+                                                    {selectedProject.links.demo.includes("pypi.org") ? "PyPI Package" : "Live Demo"}
+                                                </a>
+                                            )}
+                                            {selectedProject.links.repo && selectedProject.links.repo !== "#" && (
+                                                <a
+                                                    href={selectedProject.links.repo}
+                                                    target="_blank"
+                                                    className="inline-flex items-center gap-2 px-4 py-2 border border-neutral-200 hover:border-primary text-xs font-bold text-neutral-700 hover:text-primary bg-white hover:bg-neutral-50 transition-all rounded shadow-sm"
+                                                >
+                                                    <Github className="w-3.5 h-3.5" />
+                                                    Source Code
+                                                </a>
+                                            )}
+                                            {selectedProject.links.promptRepo && (
+                                                <a
+                                                    href={selectedProject.links.promptRepo}
+                                                    target="_blank"
+                                                    className="inline-flex items-center gap-2 px-4 py-2 border border-neutral-200 hover:border-primary text-xs font-bold text-neutral-700 hover:text-primary bg-white hover:bg-neutral-50 transition-all rounded shadow-sm"
+                                                >
+                                                    <Github className="w-3.5 h-3.5" />
+                                                    Prompt Detect Repo
+                                                </a>
+                                            )}
+                                            {selectedProject.links.sam2Repo && (
+                                                <a
+                                                    href={selectedProject.links.sam2Repo}
+                                                    target="_blank"
+                                                    className="inline-flex items-center gap-2 px-4 py-2 border border-neutral-200 hover:border-primary text-xs font-bold text-neutral-700 hover:text-primary bg-white hover:bg-neutral-50 transition-all rounded shadow-sm"
+                                                >
+                                                    <Github className="w-3.5 h-3.5" />
+                                                    SAM2 Segment Repo
+                                                </a>
+                                            )}
+                                        </div>
+                                    </motion.div>
+                                ) : (
+                                    <motion.div
+                                        key="empty"
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
+                                        exit={{ opacity: 0 }}
+                                        className="h-full flex flex-col items-center justify-center text-center space-y-4 pt-12 select-none"
+                                    >
+                                        <Terminal className="w-16 h-16 text-neutral-300 dark:text-neutral-700 animate-pulse" />
+                                        <div className="space-y-1">
+                                            <h4 className="text-neutral-400 font-sans font-bold">No Files Open</h4>
+                                            <p className="text-xs text-neutral-400 font-sans max-w-xs">
+                                                Select a project file from the sidebar explorer index to view code details.
+                                            </p>
+                                        </div>
+                                    </motion.div>
+                                )}
                             </AnimatePresence>
                         </div>
                     </div>
