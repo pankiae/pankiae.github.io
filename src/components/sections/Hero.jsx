@@ -33,6 +33,7 @@ const experiences = [
 
 export function Hero() {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const [isResumeOpen, setIsResumeOpen] = useState(false);
     return (
         <section id="home" className="min-h-screen min-h-dvh flex items-center pt-8 pb-12 md:py-16 relative overflow-hidden bg-background">
             <div className="container mx-auto px-6 max-w-6xl">
@@ -129,17 +130,24 @@ export function Hero() {
                         </div>
 
                         {/* Actions */}
-                        <div className="flex flex-col sm:flex-row gap-3 pt-4 max-w-md">
-                            <Button size="default" variant="default" className="flex-1 text-sm md:text-base font-semibold" asChild>
+                        <div className="flex flex-col sm:flex-row items-center gap-3 pt-4 max-w-md">
+                            <Button size="default" variant="default" className="w-full sm:w-auto flex-1 text-sm md:text-base font-semibold cursor-pointer h-12" asChild>
                                 <Link href="#projects">
                                     View Projects <ArrowRight className="ml-2 w-4 h-4" />
                                 </Link>
                             </Button>
-                            <Button size="default" variant="outline" className="flex-1 text-sm md:text-base font-semibold" asChild>
-                                <Link href="/resume.pdf" target="_blank">
-                                    Resume <Download className="ml-2 w-4 h-4" />
-                                </Link>
-                            </Button>
+                            
+                            {/* Highlighted Resume Badge (Clickable to open Sidebar) */}
+                            <button
+                                onClick={() => setIsResumeOpen(true)}
+                                className="bg-[#FCA5A5] text-black border border-black px-4 py-2 font-mono text-xs text-right rounded-sm shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:-translate-x-[1px] hover:-translate-y-[1px] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:bg-[#F87171] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] cursor-pointer transition-all flex-1 w-full sm:w-auto h-12 flex flex-col justify-center items-center sm:items-end shrink-0"
+                                title="Click to view resume"
+                            >
+                                <span className="block text-[8px] uppercase tracking-widest opacity-60 font-bold mb-0.5 animate-pulse">Click to View</span>
+                                <div className="font-bold uppercase tracking-tight flex items-center gap-1 leading-none">
+                                    Resume PDF <Download className="w-3.5 h-3.5" />
+                                </div>
+                            </button>
                         </div>
                     </div>
                 </motion.div>
@@ -204,6 +212,59 @@ export function Hero() {
                                         </div>
                                     </div>
                                 ))}
+                            </div>
+                        </motion.div>
+                    </>
+                )}
+            </AnimatePresence>
+
+            {/* Sidebar Drawer for Resume Viewer */}
+            <AnimatePresence>
+                {isResumeOpen && (
+                    <>
+                        {/* Overlay backdrop */}
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 0.5 }}
+                            exit={{ opacity: 0 }}
+                            onClick={() => setIsResumeOpen(false)}
+                            className="fixed inset-0 bg-black z-50 cursor-pointer"
+                        />
+                        {/* Sidebar Panel */}
+                        <motion.div
+                            initial={{ x: "100%" }}
+                            animate={{ x: 0 }}
+                            exit={{ x: "100%" }}
+                            transition={{ type: "spring", damping: 25, stiffness: 200 }}
+                            className="fixed top-0 right-0 h-full w-full max-w-2xl bg-background border-l border-border z-50 shadow-2xl flex flex-col font-sans"
+                        >
+                            {/* Header */}
+                            <div className="flex justify-between items-center px-6 py-5 border-b border-border">
+                                <span className="font-mono text-sm tracking-wider text-secondary font-bold">// Curriculum Vitae</span>
+                                <button
+                                    onClick={() => setIsResumeOpen(false)}
+                                    className="p-1 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-full transition-colors text-muted-foreground hover:text-foreground"
+                                >
+                                    <X className="w-5 h-5" />
+                                </button>
+                            </div>
+
+                            {/* Content (PDF Iframe) */}
+                            <div className="flex-1 p-6 bg-neutral-50 dark:bg-neutral-950 flex flex-col">
+                                <iframe
+                                    src="/resume.pdf"
+                                    title="Pankaj Jarial Resume"
+                                    className="w-full flex-1 border border-border rounded-sm shadow-inner bg-white"
+                                />
+                            </div>
+
+                            {/* Footer (Download Button) */}
+                            <div className="p-6 border-t border-border bg-background">
+                                <Button size="default" variant="default" className="w-full font-semibold uppercase tracking-wider text-sm cursor-pointer" asChild>
+                                    <a href="/resume.pdf" download="Pankaj_Jarial_Resume.pdf">
+                                        Download PDF <Download className="ml-2 w-4 h-4" />
+                                    </a>
+                                </Button>
                             </div>
                         </motion.div>
                     </>
