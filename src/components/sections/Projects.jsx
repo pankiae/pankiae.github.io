@@ -2,14 +2,14 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ExternalLink, Github, Package, Globe, Cpu, Eye, FileCode, Folder, Terminal, ArrowRight, X, Copy, Check } from "lucide-react";
+import { ExternalLink, Github, Package, Globe, Cpu, Eye, FileCode, Folder, Terminal, ArrowRight, X, Copy, Check, AlertCircle, Info } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 const projects = [
     {
         id: "pgtenants",
-        fileName: "django-rest-pgtenants.py",
+        fileName: "django-rest-pgtenants.txt",
         title: "django-rest-pgtenants",
         category: "Open Source",
         type: "Open-Source Package",
@@ -26,7 +26,7 @@ const projects = [
     },
     {
         id: "curico",
-        fileName: "curico-tutor.py",
+        fileName: "curico-tutor.txt",
         title: "Curico",
         category: "Professional Work",
         type: "AI Platform & Web App",
@@ -42,7 +42,7 @@ const projects = [
     },
     {
         id: "invisioned",
-        fileName: "invisioned-cv.js",
+        fileName: "invisioned-cv.txt",
         title: "Invisioned",
         category: "Professional Work",
         type: "SaaS Web Application",
@@ -58,7 +58,7 @@ const projects = [
     },
     {
         id: "segmenter",
-        fileName: "sam2-segmenter.py",
+        fileName: "sam2-segmenter.txt",
         title: "Prompt & Click Object Segmenter",
         category: "Open Source",
         type: "Forward Deployed Engineering Work",
@@ -77,79 +77,84 @@ const projects = [
 ];
 
 const projectCode = {
-    pgtenants: `# Category: Open Source Contributions
-# Type: Open-Source PyPI Package
+    pgtenants: `====================================================================================================
+PROJECT     : django-rest-pgtenants
+====================================================================================================
+Category    : Open Source Contributions
+Type        : PyPI Package
 
-class DjangoRestPgTenants:
-    def __init__(self):
-        self.name = "django-rest-pgtenants"
-        self.description = "A lightweight, zero-monkeypatching multi-tenancy package implementing PostgreSQL schema isolation."
-        self.tags = ["Python", "Django", "PostgreSQL", "PyPI", "Multi-Tenancy"]
-        
-        # Package Registry and Repository links:
-        self.pypi_package = "https://pypi.org/project/django-rest-pgtenants/"
-        self.source_code = "https://github.com/pankiae/django-rest-pgtenants"
+OVERVIEW:
+A lightweight, zero-monkeypatching multi-tenancy package published on PyPI for Django REST Framework (DRF) implementing database-level PostgreSQL schema isolation.
 
-    def get_highlights(self):
-        return [
-            "Zero monkeypatching: relies strictly on Django's routing.",
-            "Thread & async-safe: uses contextvars to eliminate data-leak risks.",
-            "Pluggable routing: supports subdomains, JWT claims, and custom headers.",
-            "PgBouncer safe: auto-resets PostgreSQL search_path to prevent leaks."
-        ]`,
-    curico: `# Category: Professional Applications
-# Type: Forward Deployed AI Platform
+KEY IMPLEMENTATIONS:
+- Zero Monkeypatching: relies strictly on Django's official database routing and middleware APIs.
+- Thread & Async-Safe: uses Python contextvars to eliminate data-leak risks across concurrent async tasks and Celery workers.
+- Pluggable Routing: supports JWT/OIDC token claims, subdomains, and custom HTTP header matching.
+- PgBouncer Safety: auto-resets PostgreSQL search_path to prevent connection leaks.
 
-class CuricoTutor:
-    def __init__(self):
-        self.name = "Curico"
-        self.description = "Multi-Model Agentic workflow generating steps for activity, Q&A, and images. Features voice tutor."
-        self.tags = ["Python", "Celery", "Redis", "Whisper", "TTS"]
-        
-        # Deploy link:
-        self.live_demo = "https://play.curico.ai"
+TECH STACK:
+Python, Django, PostgreSQL, PyPI, Multi-Tenancy
 
-    def get_highlights(self):
-        return [
-            "Agentic Workflows: orchestrates multi-step pipelines for activity generation and Q&A.",
-            "Voice Tutor Integration: incorporates Whisper speech-to-text and TTS for natural tutoring.",
-            "Backend Pipeline: off-loads tasks using Celery and Redis broker architecture."
-        ]`,
-    invisioned: `// Category: Professional Applications
-// Type: Forward Deployed SaaS Web App
+LINKS:
+- PyPI Registry : "https://pypi.org/project/django-rest-pgtenants/"
+- Source Code   : "https://github.com/pankiae/django-rest-pgtenants"`,
+    curico: `====================================================================================================
+PROJECT     : Curico
+====================================================================================================
+Category    : Professional Work
+Type        : AI Platform & Web App
 
-export const Invisioned = {
-    name: "Invisioned",
-    description: "Integrated multiple LLMs (OpenAI, Stability AI, Claude) and CV models (GroundingDINO, SAM2). Cost-effective solution serving 6,000+ users.",
-    tags: ["LLMs", "Computer Vision", "SAM2", "GroundingDINO"],
-    
-    // Deployment links:
-    liveDemo: "https://invisioned.io/",
+OVERVIEW:
+Multi-Model Agentic workflow generating steps for activity, Q&A, and images. Features Whisper + TTS voice tutor and Celery+Redis pipeline for off-loading tasks.
 
-    highlights: [
-        "Multimodal integration: combines OpenAI, Claude, and Stability AI with SAM2.",
-        "Production scale: cost-effective serverless backend serving 6,000+ users.",
-        "Optimized inference: custom model pipelines reducing Latency."
-    ]
-};`,
-    segmenter: `# Category: Open Source Contributions
-# Type: Forward Deployed Computer Vision Suite
+KEY IMPLEMENTATIONS:
+- Agentic Workflows: orchestrates multi-step pipelines for activity generation, Q&A, and asset creation.
+- Voice Tutor: incorporates Whisper speech-to-text and Text-to-Speech (TTS) for natural voice interactions.
+- Backend Pipeline: handles heavy task off-loading using a robust Celery and Redis message broker architecture.
 
-class InteractiveObjectSegmenter:
-    def __init__(self):
-        self.name = "Prompt & Click Object Segmenter"
-        self.description = "A suite of custom computer vision tools designed to detect, extract, and mark objects in images using text prompts or interactive point-clicks."
-        self.tags = ["Python", "FastAPI", "SAM2", "PyTorch", "Computer Vision", "Object Detection"]
-        
-        # Repository links:
-        self.prompt_detection_repo = "https://github.com/pankiae/ObjectDetectionOnPromptInImage"
-        self.sam2_segmentation_repo = "https://github.com/pankiae/ImageSegmentSAM2_FastAPI_BoundingBoxes"
+TECH STACK:
+Python, Celery, Redis, Whisper, TTS
 
-    def get_highlights(self):
-        return [
-            "FastAPI SAM2 integration: serves Meta's Segment Anything 2 model to extract objects.",
-            "Text-Prompt Detection: built real-time object detection models to locate and crop objects."
-        ]`
+LINKS:
+- Live Platform : "https://play.curico.ai"`,
+    invisioned: `====================================================================================================
+PROJECT     : Invisioned
+====================================================================================================
+Category    : Professional Work
+Type        : SaaS Web Application
+
+OVERVIEW:
+Integrated multiple LLMs (OpenAI, Stability AI, Claude) and computer vision models (GroundingDINO, SAM2). Cost-effective solution serving 6,000+ users.
+
+KEY IMPLEMENTATIONS:
+- Multimodal Integration: combines OpenAI, Claude, and Stability AI with Segment Anything 2 and GroundingDINO.
+- Production Scale: cost-effective serverless backend architecture serving 6,000+ active users.
+- Optimized Inference: custom model pipelines reducing latency and GPU consumption.
+
+TECH STACK:
+LLMs, Computer Vision, SAM2, GroundingDINO
+
+LINKS:
+- Live Platform : "https://invisioned.io/"`,
+    segmenter: `====================================================================================================
+PROJECT     : Prompt & Click Object Segmenter
+====================================================================================================
+Category    : Open Source Contributions
+Type        : Forward Deployed Computer Vision Suite
+
+OVERVIEW:
+A suite of custom computer vision tools designed to detect, extract, and mark objects in images using either text prompts or interactive user point-clicks.
+
+KEY IMPLEMENTATIONS:
+- FastAPI SAM2: serves Meta's Segment Anything 2 model to extract objects dynamically from clicked coordinates or bounding boxes.
+- Text-Prompt Detection: built real-time object detection models to locate and crop objects based on descriptive text queries.
+
+TECH STACK:
+Python, FastAPI, SAM2, PyTorch, Computer Vision, Object Detection
+
+LINKS:
+- Prompt Detect : "https://github.com/pankiae/ObjectDetectionOnPromptInImage"
+- SAM2 Segment  : "https://github.com/pankiae/ImageSegmentSAM2_FastAPI_BoundingBoxes"`
 };
 
 const iconMap = {
@@ -162,7 +167,14 @@ const iconMap = {
 export function Projects() {
     const [openTabs, setOpenTabs] = useState([projects[0]]);
     const [activeTabId, setActiveTabId] = useState(projects[0].id);
-    const [copiedUrl, setCopiedUrl] = useState("");
+
+    // Editable text contents state
+    const [fileContents, setFileContents] = useState({
+        pgtenants: projectCode.pgtenants,
+        curico: projectCode.curico,
+        invisioned: projectCode.invisioned,
+        segmenter: projectCode.segmenter
+    });
 
     const handleFileSelect = (project) => {
         if (!openTabs.find((tab) => tab.id === project.id)) {
@@ -181,13 +193,93 @@ export function Projects() {
         }
     };
 
-    const handleCopy = (url) => {
-        navigator.clipboard.writeText(url);
-        setCopiedUrl(url);
-        setTimeout(() => setCopiedUrl(""), 1500);
+    const renderStyledLine = (line) => {
+        if (line.startsWith("===")) {
+            return <span className="text-neutral-300 dark:text-neutral-600 select-none">{line}</span>;
+        }
+
+        if (line.endsWith(":") && (line === "OVERVIEW:" || line === "KEY IMPLEMENTATIONS:" || line === "TECH STACK:" || line === "LINKS:")) {
+            return <span className="text-secondary font-bold dark:text-secondary tracking-wider">{line}</span>;
+        }
+
+        if (line.includes("    : ")) {
+            const parts = line.split("    : ");
+            const label = parts[0];
+            const val = parts.slice(1).join("    : ");
+            return (
+                <span>
+                    <span className="text-blue-600 font-semibold dark:text-blue-400">{label}</span>
+                    <span className="text-neutral-400">    : </span>
+                    <span className="text-neutral-800 dark:text-neutral-200">{val}</span>
+                </span>
+            );
+        }
+
+        if (line.includes("     : ")) {
+            const parts = line.split("     : ");
+            const label = parts[0];
+            const val = parts.slice(1).join("     : ");
+            return (
+                <span>
+                    <span className="text-blue-600 font-bold dark:text-blue-400">{label}</span>
+                    <span className="text-neutral-400">     : </span>
+                    <span className="text-neutral-800 dark:text-neutral-200 font-bold">{val}</span>
+                </span>
+            );
+        }
+
+        if (line.includes(" : ") && line.includes('"')) {
+            const parts = line.split(" : ");
+            const label = parts[0];
+            const val = parts.slice(1).join(" : ");
+            const urlMatch = val.match(/"([^"]+)"/);
+
+            if (urlMatch) {
+                const url = urlMatch[1];
+                return (
+                    <span>
+                        <span className="text-neutral-600 dark:text-neutral-400">{label}</span>
+                        <span className="text-neutral-400"> : </span>
+                        <span className="text-neutral-400">"</span>
+                        <span className="text-[#0ea5e9] dark:text-[#38bdf8] underline decoration-1 cursor-pointer font-bold">{url}</span>
+                        <span className="text-neutral-400">"</span>
+                    </span>
+                );
+            }
+        }
+
+        if (line.trim().startsWith("- ")) {
+            const rest = line.trim().substring(2);
+            if (rest.includes(": ")) {
+                const parts = rest.split(": ");
+                const boldPart = parts[0];
+                const textPart = parts.slice(1).join(": ");
+                return (
+                    <span>
+                        <span className="text-primary font-bold mr-2 select-none">-</span>
+                        <span className="text-neutral-900 font-bold dark:text-neutral-100">{boldPart}:</span>
+                        <span className="text-neutral-600 dark:text-neutral-400"> {textPart}</span>
+                    </span>
+                );
+            }
+            return (
+                <span>
+                    <span className="text-primary font-bold mr-2 select-none">-</span>
+                    <span className="text-neutral-600 dark:text-neutral-400">{rest}</span>
+                </span>
+            );
+        }
+
+        return <span className="text-neutral-600 dark:text-neutral-400">{line}</span>;
     };
 
     const selectedProject = projects.find((p) => p.id === activeTabId);
+    const activeText = selectedProject ? fileContents[selectedProject.id] : "";
+
+    // Check if the user has modified any file content
+    const isModified = Object.keys(fileContents).some(
+        (key) => fileContents[key] !== projectCode[key]
+    );
 
     return (
         <section id="projects" className="py-20 bg-background border-t border-neutral-200 dark:border-neutral-800">
@@ -204,7 +296,7 @@ export function Projects() {
                         Featured Projects
                     </h2>
                     <div className="w-12 h-0.5 bg-primary mx-auto my-3" />
-                    <p className="text-lg md:text-xl text-muted-foreground font-sans">
+                    <p className="text-lg md:text-xl text-muted-foreground font-sans max-w-2xl mx-auto">
                         An interactive workspace exploring system design, computer vision pipelines, and developer packages.
                     </p>
                 </motion.div>
@@ -215,7 +307,7 @@ export function Projects() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-50px" }}
                     transition={{ duration: 0.8 }}
-                    className="w-full bg-white text-neutral-800 border border-neutral-200 rounded-lg shadow-xl flex flex-col md:flex-row h-[680px] md:h-[620px]"
+                    className="w-full bg-white text-neutral-800 border border-neutral-200 rounded-lg shadow-xl flex flex-col md:flex-row h-auto"
                 >
                     {/* Sidebar / File Explorer */}
                     <div className="w-full md:w-64 bg-neutral-50/90 border-b md:border-b-0 md:border-r border-neutral-200 flex flex-col shrink-0">
@@ -230,7 +322,7 @@ export function Projects() {
                         </div>
 
                         {/* File Tree */}
-                        <div className="flex-1 overflow-y-auto p-3 space-y-4">
+                        <div className="flex-1 p-3 space-y-4">
                             {/* Categories */}
                             <div>
                                 <div className="flex items-center gap-1 px-2 py-1 text-xs font-bold font-mono text-neutral-400 select-none uppercase tracking-wider">
@@ -263,7 +355,7 @@ export function Projects() {
                     </div>
 
                     {/* Editor Panel */}
-                    <div className="flex-1 flex flex-col bg-white overflow-hidden">
+                    <div className="flex-1 flex flex-col bg-white relative">
                         {/* Editor Tab Headers */}
                         <div className="bg-neutral-50/90 px-2 py-1.5 border-b border-neutral-200 flex items-center overflow-x-auto select-none shrink-0 scrollbar-none gap-1">
                             {openTabs.map((tab) => {
@@ -272,7 +364,7 @@ export function Projects() {
                                     <div
                                         key={tab.id}
                                         onClick={() => setActiveTabId(tab.id)}
-                                        className={`flex items-center gap-2 px-3 py-1 cursor-pointer rounded-t border-t-2 text-xs font-mono transition-all ${
+                                        className={`flex items-center gap-2 px-3 py-1 cursor-pointer rounded-t border-t-2 text-xs font-mono transition-all shrink-0 ${
                                             isActive
                                                 ? "bg-white border-primary border-r border-l border-neutral-200 text-foreground font-bold"
                                                 : "bg-neutral-100 border-transparent text-neutral-500 hover:bg-neutral-200/50"
@@ -289,8 +381,54 @@ export function Projects() {
                             })}
                         </div>
 
+                        {/* Floating Quick Action Links */}
+                        {selectedProject && openTabs.length > 0 && (
+                            <div className="absolute top-14 right-6 z-10 flex flex-wrap gap-2 pointer-events-auto bg-white/80 backdrop-blur-xs p-1 rounded-md border border-neutral-200/80 shadow-xs">
+                                {selectedProject.links.demo && selectedProject.links.demo !== "#" && (
+                                    <a
+                                        href={selectedProject.links.demo}
+                                        target="_blank"
+                                        className="inline-flex items-center gap-1 px-2.5 py-1 border border-neutral-200 hover:border-primary text-[10px] font-sans font-bold text-neutral-600 hover:text-primary bg-white hover:bg-neutral-50 transition-all rounded shadow-xs"
+                                    >
+                                        <Globe className="w-3 h-3 text-secondary" />
+                                        <span>{selectedProject.links.demo.includes("pypi.org") ? "PyPI Package" : "Open Demo"}</span>
+                                    </a>
+                                )}
+                                {selectedProject.links.repo && selectedProject.links.repo !== "#" && (
+                                    <a
+                                        href={selectedProject.links.repo}
+                                        target="_blank"
+                                        className="inline-flex items-center gap-1 px-2.5 py-1 border border-neutral-200 hover:border-primary text-[10px] font-sans font-bold text-neutral-600 hover:text-primary bg-white hover:bg-neutral-50 transition-all rounded shadow-xs"
+                                    >
+                                        <Github className="w-3 h-3 text-neutral-600" />
+                                        <span>Source Code</span>
+                                    </a>
+                                )}
+                                {selectedProject.links.promptRepo && (
+                                    <a
+                                        href={selectedProject.links.promptRepo}
+                                        target="_blank"
+                                        className="inline-flex items-center gap-1 px-2.5 py-1 border border-neutral-200 hover:border-primary text-[10px] font-sans font-bold text-neutral-600 hover:text-primary bg-white hover:bg-neutral-50 transition-all rounded shadow-xs"
+                                    >
+                                        <Github className="w-3 h-3 text-neutral-600" />
+                                        <span>Prompt Detect</span>
+                                    </a>
+                                )}
+                                {selectedProject.links.sam2Repo && (
+                                    <a
+                                        href={selectedProject.links.sam2Repo}
+                                        target="_blank"
+                                        className="inline-flex items-center gap-1 px-2.5 py-1 border border-neutral-200 hover:border-primary text-[10px] font-sans font-bold text-neutral-600 hover:text-primary bg-white hover:bg-neutral-50 transition-all rounded shadow-xs"
+                                    >
+                                        <Github className="w-3 h-3 text-neutral-600" />
+                                        <span>SAM2 Segment</span>
+                                    </a>
+                                )}
+                            </div>
+                        )}
+
                         {/* Code Workspace */}
-                        <div className="flex-1 overflow-y-auto p-4 md:p-6 font-mono text-sm leading-relaxed scrollbar-thin bg-neutral-50/30">
+                        <div className="flex-1 p-4 md:p-6 font-mono text-sm leading-relaxed bg-white overflow-x-hidden">
                             <AnimatePresence mode="wait">
                                 {selectedProject && openTabs.length > 0 ? (
                                     <motion.div
@@ -299,60 +437,38 @@ export function Projects() {
                                         animate={{ opacity: 1, x: 0 }}
                                         exit={{ opacity: 0, x: -10 }}
                                         transition={{ duration: 0.3 }}
-                                        className="space-y-4"
+                                        className="flex font-mono text-[11px] sm:text-xs leading-5 min-h-[440px]"
                                     >
-                                        {/* Styled Code Block lines */}
-                                        <div className="border border-neutral-200 rounded-md bg-white p-4 shadow-sm overflow-x-auto min-w-full">
-                                            {projectCode[selectedProject.id].split("\n").map((line, idx) => {
-                                                const urlMatch = line.match(/"(https?:\/\/[^\s"]+)"/);
-                                                const url = urlMatch ? urlMatch[1] : null;
-                                                const isComment = line.trim().startsWith("#") || line.trim().startsWith("//");
+                                        {/* Gutter Line Numbers */}
+                                        <div className="w-10 text-right pr-3 text-neutral-400 select-none border-r border-neutral-200 mr-3 shrink-0 flex flex-col">
+                                            {activeText.split("\n").map((_, idx) => (
+                                                <span key={idx} className="h-5">{idx + 1}</span>
+                                            ))}
+                                        </div>
 
-                                                return (
-                                                    <div key={idx} className="flex hover:bg-neutral-50 py-0.5 group/line font-mono text-[11px] sm:text-xs leading-5">
-                                                        {/* Line Number */}
-                                                        <span className="w-10 text-right pr-3 text-neutral-400 select-none border-r border-neutral-200 mr-3 shrink-0">
-                                                            {idx + 1}
-                                                        </span>
-
-                                                        {/* Code line content */}
-                                                        <span className={`flex-1 whitespace-pre pr-4 ${isComment ? "text-neutral-400 italic" : "text-[#24292e]"}`}>
-                                                            {line}
-                                                        </span>
-
-                                                        {/* Interactive Overlay actions for Link lines */}
-                                                        {url && (
-                                                            <div className="flex items-center gap-1.5 pl-2 shrink-0 opacity-0 group-hover/line:opacity-100 transition-opacity">
-                                                                <button
-                                                                    onClick={() => handleCopy(url)}
-                                                                    className="px-2 py-0.5 border border-neutral-200 hover:border-neutral-300 rounded bg-white text-[10px] text-neutral-500 hover:text-foreground flex items-center gap-1 transition-all shadow-sm select-none"
-                                                                    title="Copy URL"
-                                                                >
-                                                                    {copiedUrl === url ? (
-                                                                        <>
-                                                                            <Check className="w-3 h-3 text-green-600" />
-                                                                            <span className="text-green-600 font-sans">Copied!</span>
-                                                                        </>
-                                                                    ) : (
-                                                                        <>
-                                                                            <Copy className="w-3 h-3" />
-                                                                            <span className="font-sans">Copy</span>
-                                                                        </>
-                                                                    )}
-                                                                </button>
-                                                                <a
-                                                                    href={url}
-                                                                    target="_blank"
-                                                                    className="px-2 py-0.5 border border-neutral-200 hover:border-neutral-300 rounded bg-white text-[10px] text-neutral-500 hover:text-foreground flex items-center gap-1 transition-all shadow-sm select-none"
-                                                                >
-                                                                    <ExternalLink className="w-3 h-3" />
-                                                                    <span className="font-sans">Open</span>
-                                                                </a>
-                                                            </div>
-                                                        )}
+                                        {/* Layered Editor Panel */}
+                                        <div className="flex-1 relative min-h-[440px]">
+                                            {/* Bottom Layer: Highlighted Syntax Code */}
+                                            <div className="absolute inset-0 pointer-events-none select-none whitespace-pre-wrap break-words text-neutral-800 pr-4">
+                                                {activeText.split("\n").map((line, idx) => (
+                                                    <div key={idx} className="min-h-[20px] leading-5">
+                                                        {renderStyledLine(line)}
                                                     </div>
-                                                );
-                                            })}
+                                                ))}
+                                            </div>
+
+                                            {/* Top Layer: Transparent Editable Textarea overlay */}
+                                            <textarea
+                                                value={activeText}
+                                                onChange={(e) => {
+                                                    setFileContents({
+                                                        ...fileContents,
+                                                        [selectedProject.id]: e.target.value
+                                                    });
+                                                }}
+                                                className="absolute inset-0 w-full h-full bg-transparent border-0 outline-none resize-none p-0 text-transparent caret-neutral-800 leading-5 whitespace-pre-wrap break-words focus:ring-0 focus:outline-none font-mono text-[11px] sm:text-xs overflow-y-hidden"
+                                                spellCheck="false"
+                                            />
                                         </div>
                                     </motion.div>
                                 ) : (
@@ -367,12 +483,32 @@ export function Projects() {
                                         <div className="space-y-1">
                                             <h4 className="text-neutral-400 font-sans font-bold">No Files Open</h4>
                                             <p className="text-xs text-neutral-400 font-sans max-w-xs">
-                                                Select a project file from the sidebar explorer index to view code details.
+                                                Select a project file from the sidebar explorer index to view details.
                                             </p>
                                         </div>
                                     </motion.div>
                                 )}
                             </AnimatePresence>
+                        </div>
+
+                        {/* IDE Status Bar */}
+                        <div className="bg-neutral-100 border-t border-neutral-200 px-4 py-1.5 flex items-center justify-between text-[11px] text-neutral-500 select-none shrink-0 font-sans">
+                            {isModified ? (
+                                <div className="flex items-center gap-2">
+                                    <AlertCircle className="w-3.5 h-3.5 text-amber-500 animate-pulse shrink-0" />
+                                    <span className="font-medium text-neutral-700">Warning: File content modified. Refresh the site to undo changes.</span>
+                                </div>
+                            ) : (
+                                <div className="flex items-center gap-2">
+                                    <Info className="w-3.5 h-3.5 text-blue-500 shrink-0" />
+                                    <span>Editable editor console workspace. Try typing anything inside the file.</span>
+                                </div>
+                            )}
+                            <div className="hidden sm:flex items-center gap-4 text-neutral-400">
+                                <span>Ln {activeText.split("\n").length}, Col {activeText.length}</span>
+                                <span>UTF-8</span>
+                                <span>Plain Text</span>
+                            </div>
                         </div>
                     </div>
                 </motion.div>
