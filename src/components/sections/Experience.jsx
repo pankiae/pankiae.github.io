@@ -60,7 +60,7 @@ export function Experience() {
                             className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 pt-8 border-t border-neutral-800/10"
                         >
                             {/* Time & Location sidebar column */}
-                            <div className="md:col-span-3 font-mono text-xs md:text-sm text-muted-foreground uppercase space-y-1">
+                            <div className="md:col-span-3 font-mono text-xs md:text-sm text-muted-foreground space-y-1">
                                 <div className="text-primary font-bold">{exp.period}</div>
                                 <div>{exp.location}</div>
                             </div>
@@ -74,7 +74,7 @@ export function Experience() {
                                 <p className="text-base md:text-lg text-muted-foreground leading-relaxed font-sans">{exp.description}</p>
                                 <div className="flex flex-wrap gap-1.5 pt-2">
                                     {exp.skills.map((skill) => (
-                                        <span key={skill} className="text-xs md:text-sm px-2 py-0.5 border border-neutral-300 text-muted-foreground uppercase tracking-tight font-mono">
+                                        <span key={skill} className="text-xs md:text-sm px-2 py-0.5 border border-neutral-300 text-muted-foreground tracking-tight font-mono">
                                             {skill}
                                         </span>
                                     ))}

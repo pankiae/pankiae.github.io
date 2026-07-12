@@ -79,7 +79,7 @@ export function Hero() {
 
                         {/* Experience Specifications */}
                         <div className="space-y-2 mb-6 md:mb-0">
-                            <span className="text-xs md:text-sm font-mono uppercase tracking-wider text-secondary font-bold block">// Experience & Details</span>
+                            <span className="text-xs md:text-sm font-mono tracking-wider text-secondary font-bold block">// Experience & Details</span>
                             <div className="space-y-2 font-mono text-xs sm:text-sm md:text-base max-w-md">
                                 <div className="flex justify-between border-b border-dashed border-neutral-300 pb-1">
                                     <span className="text-muted-foreground">Experience:</span>
@@ -96,7 +96,7 @@ export function Hero() {
 
                         {/* Core Skills */}
                         <div className="space-y-3 mb-6 md:mb-0">
-                            <span className="text-xs md:text-sm font-mono uppercase tracking-wider text-accent font-bold block">// Core Skills</span>
+                            <span className="text-xs md:text-sm font-mono tracking-wider text-accent font-bold block">// Core Skills</span>
                             <div className="flex flex-wrap gap-1.5">
                                 {skills.map((skill) => (
                                     <span key={skill} className="text-sm md:text-base px-2.5 py-1 border border-neutral-300 text-foreground font-semibold tracking-tight font-mono">

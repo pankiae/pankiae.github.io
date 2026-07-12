@@ -107,7 +107,7 @@ export function Projects() {
                                     </div>
                                 </div>
                                 <div className="border-t border-neutral-800/10 pt-4 space-y-2">
-                                    <span className="text-[10px] md:text-xs text-muted-foreground uppercase tracking-widest block font-bold">Technologies</span>
+                                    <span className="text-[10px] md:text-xs text-muted-foreground tracking-wider block font-bold">Technologies</span>
                                     <div className="flex flex-wrap gap-1.5">
                                         {project.tags.map((tag) => (
                                             <span key={tag} className="text-sm md:text-base px-2.5 py-1 border border-neutral-300 text-foreground font-semibold tracking-tight">
@@ -118,7 +118,7 @@ export function Projects() {
                                 </div>
                                 {((project.links.demo && project.links.demo !== "#") || (project.links.repo && project.links.repo !== "#")) && (
                                     <div className="border-t border-neutral-800/10 pt-4 space-y-3">
-                                        <span className="text-[10px] md:text-xs text-muted-foreground uppercase tracking-widest block font-bold">Links</span>
+                                        <span className="text-[10px] md:text-xs text-muted-foreground tracking-wider block font-bold">Links</span>
                                         <div className="flex flex-col sm:flex-row lg:flex-col gap-2">
                                             {project.links.demo && project.links.demo !== "#" && (
                                                 <Button size="sm" variant="default" className="justify-start text-xs md:text-sm font-semibold" asChild>
