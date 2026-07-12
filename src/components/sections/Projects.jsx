@@ -7,6 +7,12 @@ import Link from "next/link";
 
 const projects = [
     {
+        title: "django-rest-pgtenants",
+        description: "A Python/Django package published on PyPI providing schema-based multi-tenancy for Django REST Framework. Utilizes PostgreSQL schemas for complete tenant isolation with middleware-driven request routing and dynamic tenant migration support.",
+        tags: ["Python", "Django", "DRF", "PostgreSQL", "PyPI", "Middleware"],
+        links: { demo: "https://pypi.org/project/django-rest-pgtenants/", repo: "https://github.com/pankiae/django-rest-pgtenants" }
+    },
+    {
         title: "Curico",
         description: "Multi-Model Agentic workflow generating steps for activity, Q&A, and images. Features Whisper + TTS voice tutor and Celery+Redis pipeline for off-loading tasks.",
         tags: ["Python", "Celery", "Redis", "Whisper", "TTS"],
@@ -64,7 +70,7 @@ export function Projects() {
                                 <span className="text-[10px] text-muted-foreground uppercase tracking-widest block font-bold">Technologies</span>
                                 <div className="flex flex-wrap gap-1.5">
                                     {project.tags.map((tag) => (
-                                        <span key={tag} className="text-xs px-2 py-0.5 border border-neutral-300 text-muted-foreground uppercase tracking-tight">
+                                        <span key={tag} className="text-sm px-2.5 py-1 border border-neutral-300 text-foreground font-semibold tracking-tight">
                                             {tag}
                                         </span>
                                     ))}
@@ -75,14 +81,14 @@ export function Projects() {
                                     <span className="text-[10px] text-muted-foreground uppercase tracking-widest block font-bold">Links</span>
                                     <div className="flex flex-col sm:flex-row lg:flex-col gap-2">
                                         {project.links.demo && project.links.demo !== "#" && (
-                                            <Button size="sm" variant="default" className="justify-start text-xs uppercase" asChild>
+                                            <Button size="sm" variant="default" className="justify-start text-xs font-semibold" asChild>
                                                 <Link href={project.links.demo} target="_blank">
-                                                    Live Demo
+                                                    {project.links.demo.includes("pypi.org") ? "PyPI Package" : "Live Demo"}
                                                 </Link>
                                             </Button>
                                         )}
                                         {project.links.repo && project.links.repo !== "#" && (
-                                            <Button size="sm" variant="outline" className="justify-start text-xs uppercase" asChild>
+                                            <Button size="sm" variant="outline" className="justify-start text-xs font-semibold" asChild>
                                                 <Link href={project.links.repo} target="_blank">
                                                     Source Code
                                                 </Link>

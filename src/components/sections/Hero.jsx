@@ -99,7 +99,7 @@ export function Hero() {
                             <span className="text-xs font-mono uppercase tracking-wider text-accent font-bold block">// Core Skills</span>
                             <div className="flex flex-wrap gap-1.5">
                                 {skills.map((skill) => (
-                                    <span key={skill} className="text-xs px-2 py-0.5 border border-neutral-300 text-muted-foreground uppercase tracking-tight font-mono">
+                                    <span key={skill} className="text-sm px-2.5 py-1 border border-neutral-300 text-foreground font-semibold tracking-tight font-mono">
                                         {skill}
                                     </span>
                                 ))}
