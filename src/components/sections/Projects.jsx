@@ -97,7 +97,10 @@ Python, Django, PostgreSQL, PyPI, Multi-Tenancy
 
 LINKS:
 - PyPI Registry : "https://pypi.org/project/django-rest-pgtenants/"
-- Source Code   : "https://github.com/pankiae/django-rest-pgtenants"`,
+- Source Code   : "https://github.com/pankiae/django-rest-pgtenants"
+
+
+`,
     curico: `====================================================================================================
 PROJECT     : Curico
 ====================================================================================================
@@ -116,7 +119,10 @@ TECH STACK:
 Python, Celery, Redis, Whisper, TTS
 
 LINKS:
-- Live Platform : "https://play.curico.ai"`,
+- Live Platform : "https://play.curico.ai"
+
+
+`,
     invisioned: `====================================================================================================
 PROJECT     : Invisioned
 ====================================================================================================
@@ -135,7 +141,10 @@ TECH STACK:
 LLMs, Computer Vision, SAM2, GroundingDINO
 
 LINKS:
-- Live Platform : "https://invisioned.io/"`,
+- Live Platform : "https://invisioned.io/"
+
+
+`,
     segmenter: `====================================================================================================
 PROJECT     : Prompt & Click Object Segmenter
 ====================================================================================================
@@ -154,7 +163,10 @@ Python, FastAPI, SAM2, PyTorch, Computer Vision, Object Detection
 
 LINKS:
 - Prompt Detect : "https://github.com/pankiae/ObjectDetectionOnPromptInImage"
-- SAM2 Segment  : "https://github.com/pankiae/ImageSegmentSAM2_FastAPI_BoundingBoxes"`
+- SAM2 Segment  : "https://github.com/pankiae/ImageSegmentSAM2_FastAPI_BoundingBoxes"
+
+
+`
 };
 
 const iconMap = {
@@ -224,7 +236,7 @@ export function Projects() {
             const val = parts.slice(1).join("    : ");
             return (
                 <span>
-                    <span className="text-blue-600 font-semibold dark:text-blue-400">{label}</span>
+                    <span className="text-blue-600 font-bold dark:text-blue-400">{label}</span>
                     <span className="text-neutral-400">    : </span>
                     <span className="text-neutral-800 dark:text-neutral-200">{val}</span>
                 </span>
@@ -305,25 +317,8 @@ export function Projects() {
     );
 
     return (
-        <section id="projects" className="py-20 bg-background border-t border-neutral-200 dark:border-neutral-800">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                {/* Heading */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                    className="text-center mb-16"
-                >
-                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-extrabold tracking-tight text-foreground">
-                        Featured Projects
-                    </h2>
-                    <div className="w-12 h-0.5 bg-primary mx-auto my-3" />
-                    <p className="text-lg md:text-xl text-muted-foreground font-sans max-w-2xl mx-auto">
-                        An interactive workspace exploring system design, computer vision pipelines, and developer packages.
-                    </p>
-                </motion.div>
-
+        <section id="projects" className="py-12 bg-background border-t border-neutral-200 dark:border-neutral-800">
+            <div className="w-full max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-12">
                 {/* IDE Interface Wrapper */}
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
@@ -335,13 +330,10 @@ export function Projects() {
                     {/* Sidebar / File Explorer */}
                     <div className="w-full md:w-64 bg-neutral-50/90 border-b md:border-b-0 md:border-r border-neutral-200 flex flex-col shrink-0">
                         {/* Tab header */}
-                        <div className="px-4 py-3 border-b border-neutral-200 flex items-center gap-2">
-                            <div className="flex gap-1.5">
-                                <span className="w-3 h-3 rounded-full bg-[#ff5f56]" />
-                                <span className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
-                                <span className="w-3 h-3 rounded-full bg-[#27c93f]" />
-                            </div>
-                            <span className="text-xs font-mono text-neutral-400 ml-4 font-bold select-none">WORKSPACE_EXPLORER</span>
+                        <div className="px-4 py-3 border-b border-neutral-200 flex items-center justify-center">
+                            <span className="text-xs md:text-sm font-mono font-black uppercase tracking-wider bg-[#007aff] text-white border-2 border-black px-3.5 py-1 shadow-[3px_3px_0px_rgba(0,0,0,1)] select-none shrink-0">
+                                PROJECTS_EXPLORER
+                            </span>
                         </div>
 
                         {/* File Tree */}
@@ -405,7 +397,7 @@ export function Projects() {
                         </div>
 
                         {/* Code Workspace */}
-                        <div className="flex-1 p-4 md:p-6 font-mono text-sm leading-relaxed bg-white overflow-x-hidden">
+                        <div className="flex-1 p-4 md:p-6 font-mono bg-white overflow-x-hidden">
                             <AnimatePresence mode="wait">
                                 {selectedProject && openTabs.length > 0 ? (
                                     <motion.div
@@ -414,21 +406,21 @@ export function Projects() {
                                         animate={{ opacity: 1, x: 0 }}
                                         exit={{ opacity: 0, x: -10 }}
                                         transition={{ duration: 0.3 }}
-                                        className="flex font-mono text-[11px] sm:text-xs leading-5 min-h-[440px]"
+                                        className="flex font-mono text-[11px] sm:text-xs md:text-sm lg:text-[15px] leading-5 md:leading-6 lg:leading-7 min-h-[440px]"
                                     >
                                         {/* Gutter Line Numbers */}
-                                        <div className="w-10 text-right pr-3 text-neutral-400 select-none border-r border-neutral-200 mr-3 shrink-0 flex flex-col">
+                                        <div className="w-10 md:w-14 text-right pr-3 md:pr-4 text-neutral-400 select-none border-r border-neutral-200 mr-3 md:mr-4 shrink-0 flex flex-col font-medium">
                                             {activeText.split("\n").map((_, idx) => (
-                                                <span key={idx} className="h-5">{idx + 1}</span>
+                                                <span key={idx} className="h-5 md:h-6 lg:h-7 leading-5 md:leading-6 lg:leading-7">{idx + 1}</span>
                                             ))}
                                         </div>
 
                                         {/* Layered Editor Panel */}
                                         <div className="flex-1 relative min-h-[440px]">
                                             {/* Bottom Layer: Highlighted Syntax Code */}
-                                            <div className="absolute inset-0 select-none whitespace-pre-wrap break-words text-neutral-800 pr-4 z-20 pointer-events-none">
+                                            <div className="absolute inset-0 select-none whitespace-pre-wrap break-words text-neutral-800 pr-4 z-20 pointer-events-none font-medium md:font-semibold">
                                                 {activeText.split("\n").map((line, idx) => (
-                                                    <div key={idx} className="min-h-[20px] leading-5">
+                                                    <div key={idx} className="min-h-[20px] md:min-h-[24px] lg:min-h-[28px] leading-5 md:leading-6 lg:leading-7">
                                                         {renderStyledLine(line)}
                                                     </div>
                                                 ))}
@@ -443,7 +435,7 @@ export function Projects() {
                                                         [selectedProject.id]: e.target.value
                                                     });
                                                 }}
-                                                className="absolute inset-0 w-full h-full bg-transparent border-0 outline-none resize-none p-0 text-transparent caret-neutral-800 leading-5 whitespace-pre-wrap break-words focus:ring-0 focus:outline-none font-mono text-[11px] sm:text-xs overflow-y-hidden z-10"
+                                                className="absolute inset-0 w-full h-full bg-transparent border-0 outline-none resize-none p-0 text-transparent caret-neutral-800 leading-5 md:leading-6 lg:leading-7 whitespace-pre-wrap break-words focus:ring-0 focus:outline-none font-mono font-medium md:font-semibold overflow-y-hidden z-10"
                                                 spellCheck="false"
                                             />
                                         </div>
