@@ -2,8 +2,10 @@
 
 :root {
   /* Newspaper / Editorial & Google Color Palette */
-  --background: #FAF9F6;      /* Off-white / Book paper color */
-  --foreground: #121212;      /* Off-black / Ink color */
+  --background: #FAF9F6;
+  /* Off-white / Book paper color */
+  --foreground: #121212;
+  /* Off-black / Ink color */
 
   --card: #ffffff;
   --card-foreground: #121212;
@@ -12,16 +14,20 @@
   --popover-foreground: #121212;
 
   /* Google Colors for Accent & Contrast */
-  --primary: #4285F4;         /* Google Blue */
+  --primary: #4285F4;
+  /* Google Blue */
   --primary-foreground: #ffffff;
 
-  --secondary: #EA4335;       /* Google Red */
+  --secondary: #EA4335;
+  /* Google Red */
   --secondary-foreground: #ffffff;
 
-  --accent: #34A853;          /* Google Green */
+  --accent: #34A853;
+  /* Google Green */
   --accent-foreground: #ffffff;
 
-  --tertiary: #FBBC05;        /* Google Yellow */
+  --tertiary: #FBBC05;
+  /* Google Yellow */
   --tertiary-foreground: #121212;
 
   --muted: #F1F3F4;
@@ -30,12 +36,15 @@
   --destructive: #EA4335;
   --destructive-foreground: #ffffff;
 
-  --border: #E0E0E0;          /* Elegant thin gray borders */
-  --border-editorial: #121212; /* Solid black divider line for newspaper look */
+  --border: #E0E0E0;
+  /* Elegant thin gray borders */
+  --border-editorial: #121212;
+  /* Solid black divider line for newspaper look */
   --input: #E0E0E0;
   --ring: #4285F4;
 
-  --radius: 0.125rem;         /* Flat, editorial style corners */
+  --radius: 0.125rem;
+  /* Flat, editorial style corners */
 }
 
 @theme {

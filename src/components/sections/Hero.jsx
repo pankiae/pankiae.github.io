@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Download } from "lucide-react";
+import { ArrowRight, Download, Github, Linkedin, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
@@ -19,10 +19,10 @@ export function Hero() {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
-                    className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start"
+                    className="grid grid-cols-12 gap-4 sm:gap-8 lg:gap-12 items-start"
                 >
-                    {/* Left Column (4 cols): Name, Title, and Profile Pic */}
-                    <div className="lg:col-span-4 space-y-6">
+                    {/* Left Column (5 cols on mobile, 4 on desktop): Name, Title, and Profile Pic */}
+                    <div className="col-span-5 md:col-span-4 space-y-4 md:space-y-6">
                         <div className="space-y-2">
                             <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-black tracking-tight leading-none text-foreground uppercase">
                                 Pankaj Jarial
@@ -42,8 +42,8 @@ export function Hero() {
                         </div>
                     </div>
 
-                    {/* Right Column (8 cols): Biography Summary, Experience Stats, and Core Skills */}
-                    <div className="lg:col-span-8 space-y-6 lg:border-l border-neutral-800/10 lg:pl-8 lg:pt-2">
+                    {/* Right Column (7 cols on mobile, 8 on desktop): Biography Summary, Experience Stats, and Core Skills */}
+                    <div className="col-span-7 md:col-span-8 space-y-4 md:space-y-6 md:border-l border-neutral-800/10 pl-2 md:pl-8 pt-1 md:pt-2">
                         {/* Summary */}
                         <div className="space-y-4 text-base md:text-lg text-muted-foreground leading-relaxed font-sans">
                             <p className="dropcap text-foreground font-medium">
@@ -54,7 +54,27 @@ export function Hero() {
                             </p>
                         </div>
 
-                        <div className="h-px bg-neutral-800/10" />
+                        {/* Social & Contact Links moved here under the Summary */}
+                        <div className="flex flex-wrap gap-x-6 gap-y-2.5 border-t border-b border-dashed border-neutral-300 py-3 font-sans text-xs sm:text-sm">
+                            <div className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
+                                <Github className="w-4 h-4 shrink-0 text-[#24292e]" />
+                                <Link href="https://github.com/pankiae" target="_blank" className="hover:underline truncate text-foreground font-medium">
+                                    github.com/pankiae
+                                </Link>
+                            </div>
+                            <div className="flex items-center gap-2 text-muted-foreground hover:text-accent transition-colors">
+                                <Linkedin className="w-4 h-4 shrink-0 text-[#0A66C2]" />
+                                <Link href="https://linkedin.com/in/pankiae" target="_blank" className="hover:underline truncate text-foreground font-medium">
+                                    linkedin.com/in/pankiae
+                                </Link>
+                            </div>
+                            <div className="flex items-center gap-2 text-muted-foreground hover:text-secondary transition-colors">
+                                <Mail className="w-4 h-4 shrink-0 text-[#EA4335]" />
+                                <a href="mailto:pankajjarial.job@gmail.com" className="hover:underline truncate text-foreground font-medium">
+                                    pankajjarial.job@gmail.com
+                                </a>
+                            </div>
+                        </div>
 
                         {/* Experience Specifications */}
                         <div className="space-y-2">
