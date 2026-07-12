@@ -97,10 +97,7 @@ Python, Django, PostgreSQL, PyPI, Multi-Tenancy
 
 LINKS:
 - PyPI Registry : "https://pypi.org/project/django-rest-pgtenants/"
-- Source Code   : "https://github.com/pankiae/django-rest-pgtenants"
-
-
-`,
+- Source Code   : "https://github.com/pankiae/django-rest-pgtenants"`,
     curico: `====================================================================================================
 PROJECT     : Curico
 ====================================================================================================
@@ -119,10 +116,7 @@ TECH STACK:
 Python, Celery, Redis, Whisper, TTS
 
 LINKS:
-- Live Platform : "https://play.curico.ai"
-
-
-`,
+- Live Platform : "https://play.curico.ai"`,
     invisioned: `====================================================================================================
 PROJECT     : Invisioned
 ====================================================================================================
@@ -141,10 +135,7 @@ TECH STACK:
 LLMs, Computer Vision, SAM2, GroundingDINO
 
 LINKS:
-- Live Platform : "https://invisioned.io/"
-
-
-`,
+- Live Platform : "https://invisioned.io/"`,
     segmenter: `====================================================================================================
 PROJECT     : Prompt & Click Object Segmenter
 ====================================================================================================
@@ -163,10 +154,7 @@ Python, FastAPI, SAM2, PyTorch, Computer Vision, Object Detection
 
 LINKS:
 - Prompt Detect : "https://github.com/pankiae/ObjectDetectionOnPromptInImage"
-- SAM2 Segment  : "https://github.com/pankiae/ImageSegmentSAM2_FastAPI_BoundingBoxes"
-
-
-`
+- SAM2 Segment  : "https://github.com/pankiae/ImageSegmentSAM2_FastAPI_BoundingBoxes"`
 };
 
 const iconMap = {
@@ -317,8 +305,8 @@ export function Projects() {
     );
 
     return (
-        <section id="projects" className="py-12 bg-background border-t border-neutral-200 dark:border-neutral-800">
-            <div className="w-full max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-12">
+        <section id="projects" className="min-h-screen min-h-dvh flex items-center pt-0 pb-0 bg-background border-t border-neutral-200 dark:border-neutral-800 relative overflow-hidden">
+            <div className="w-full max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-12 flex flex-col justify-center">
                 {/* IDE Interface Wrapper */}
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
