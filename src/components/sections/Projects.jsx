@@ -141,8 +141,8 @@ export function Projects() {
                                             <div>
                                                 {/* Dossier Header */}
                                                 <div className="flex justify-between items-center border-b border-dashed border-neutral-300 dark:border-neutral-800 pb-3 mb-4 font-mono text-[10px] sm:text-xs">
-                                                    <span className="text-secondary font-bold uppercase tracking-wider">// DOSSIER NO. 0{index + 1}</span>
-                                                    <span className="text-muted-foreground uppercase tracking-tight">{project.type}</span>
+                                                    <span className="text-secondary font-bold tracking-wider">// Dossier No. 0{index + 1}</span>
+                                                    <span className="text-muted-foreground tracking-tight">{project.type}</span>
                                                 </div>
 
                                                 {/* Title */}
@@ -182,7 +182,7 @@ export function Projects() {
                                                         <a
                                                             href={project.links.demo}
                                                             target="_blank"
-                                                            className="flex-1 text-center py-2 border border-black font-mono text-xs font-bold uppercase tracking-wider bg-[#FEF08A] hover:bg-[#FACC15] active:bg-[#CA8A04] shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:-translate-x-[1px] hover:-translate-y-[1px] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] transition-all cursor-pointer text-black"
+                                                            className="flex-1 text-center py-2 border border-black font-mono text-xs font-bold tracking-wider bg-[#FEF08A] hover:bg-[#FACC15] active:bg-[#CA8A04] shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:-translate-x-[1px] hover:-translate-y-[1px] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] transition-all cursor-pointer text-black"
                                                         >
                                                             {project.links.demo.includes("pypi.org") ? "PyPI Package" : "Live Demo"}
                                                         </a>
@@ -191,7 +191,7 @@ export function Projects() {
                                                         <a
                                                             href={project.links.repo}
                                                             target="_blank"
-                                                            className="flex-1 text-center py-2 border border-black font-mono text-xs font-bold uppercase tracking-wider bg-[#FCA5A5] hover:bg-[#F87171] active:bg-[#CA8A04] shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:-translate-x-[1px] hover:-translate-y-[1px] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] transition-all cursor-pointer text-black"
+                                                            className="flex-1 text-center py-2 border border-black font-mono text-xs font-bold tracking-wider bg-[#FCA5A5] hover:bg-[#F87171] active:bg-[#CA8A04] shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:-translate-x-[1px] hover:-translate-y-[1px] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] transition-all cursor-pointer text-black"
                                                         >
                                                             Source Code
                                                         </a>
@@ -200,7 +200,7 @@ export function Projects() {
                                                         <a
                                                             href={project.links.promptRepo}
                                                             target="_blank"
-                                                            className="flex-1 text-center py-2 border border-black font-mono text-[10px] sm:text-xs font-bold uppercase tracking-wider bg-[#FCA5A5] hover:bg-[#F87171] active:bg-[#CA8A04] shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:-translate-x-[1px] hover:-translate-y-[1px] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] transition-all cursor-pointer text-black"
+                                                            className="flex-1 text-center py-2 border border-black font-mono text-[10px] sm:text-xs font-bold tracking-wider bg-[#FCA5A5] hover:bg-[#F87171] active:bg-[#CA8A04] shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:-translate-x-[1px] hover:-translate-y-[1px] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] transition-all cursor-pointer text-black"
                                                             title="Object Detection on Prompt Repo"
                                                         >
                                                             Prompt Detect
@@ -210,7 +210,7 @@ export function Projects() {
                                                         <a
                                                             href={project.links.sam2Repo}
                                                             target="_blank"
-                                                            className="flex-1 text-center py-2 border border-black font-mono text-[10px] sm:text-xs font-bold uppercase tracking-wider bg-[#FCA5A5] hover:bg-[#F87171] active:bg-[#CA8A04] shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:-translate-x-[1px] hover:-translate-y-[1px] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] transition-all cursor-pointer text-black"
+                                                            className="flex-1 text-center py-2 border border-black font-mono text-[10px] sm:text-xs font-bold tracking-wider bg-[#FCA5A5] hover:bg-[#F87171] active:bg-[#CA8A04] shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:-translate-x-[1px] hover:-translate-y-[1px] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] transition-all cursor-pointer text-black"
                                                             title="SAM2 FastAPI Segmentation Repo"
                                                         >
                                                             SAM2 Segment
